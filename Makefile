@@ -1,5 +1,5 @@
-VERSION=0.0.0
 NOMBRE="ember-blockly"
+VERSION=$(shell git describe --tags $(git rev-list --tags --max-count=1))
 
 N=[0m
 G=[01;32m
@@ -16,7 +16,7 @@ endef
 
 comandos:
 	@echo ""
-	@echo "${B}Comandos disponibles para ${Y}${NOMBRE}${N} (versión: ${VERSION})"
+	@echo "${B}Comandos disponibles para ${Y}${NOMBRE} (versión: ${VERSION})${N}"
 	@echo ""
 	@echo "  ${Y}Generales de la aplicación${N}"
 	@echo ""
