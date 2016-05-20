@@ -11,14 +11,6 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{ember-blockly}}`);
 
-  assert.equal(this.$().text().trim(), '');
+  assert.ok(this.$());
 
-  // Template block usage:"
-  this.render(hbs`
-    {{#ember-blockly}}
-      template block text
-    {{/ember-blockly}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
 });
