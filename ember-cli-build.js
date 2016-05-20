@@ -9,6 +9,7 @@ module.exports = function(defaults) {
 
   app.import("vendor/blockly_compressed.js");
   app.import("vendor/blocks_compressed.js");
+  app.import("vendor/es.js");
 
   return app.toTree();
 };

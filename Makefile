@@ -36,5 +36,6 @@ update_blockly:
 	$(call log, "Copiando archivos al directorio vendor.")
 	@cp blockly/blockly_compressed.js vendor
 	@cp blockly/blocks_compressed.js  vendor
+	@cp blockly/msg/js/es.js vendor
 
 .PHONY: tmp
