@@ -1,11 +1,14 @@
 #!/bin/bash
 set -e
 
+echo "Compilando ..."
 ember build --prod
-cp -r dist/* out/
 
 rm -rf out || exit 0;
 mkdir out;
+cp -rf dist/* out/
+
+echo "Preparando el deploy ..."
 cd out
 git init
 
@@ -15,6 +18,11 @@ git add .
 git commit -m "update"
 git remote add origin git@github.com:hugoruscitti/ember-blockly.git
 
+echo "Realizando push a girpages..."
 git push --force git@github.com:hugoruscitti/ember-blockly.git master:gh-pages
+
+echo "Limpiando los cambios"
 cd ..
 rm -rf out
+
+echo "Listo: http://hugoruscitti.github.io/ember-blockly/"
