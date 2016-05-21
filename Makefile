@@ -22,6 +22,7 @@ comandos:
 	@echo ""
 	@echo "    ${G}init${N}              Instala dependencias."
 	@echo "    ${G}update_blockly${N}    Actualiza la versión de blockly."
+	@echo "    ${G}deploy${N}            Sube la demo a gitpages."
 	@echo ""
 
 init:
@@ -37,5 +38,9 @@ update_blockly:
 	@cp blockly/blockly_compressed.js vendor
 	@cp blockly/blocks_compressed.js  vendor
 	@cp blockly/msg/js/es.js vendor
+
+deploy:
+	$(call task, "Realizando deploy.")
+	@sh deploy.sh
 
 .PHONY: tmp
