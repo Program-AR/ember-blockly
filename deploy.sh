@@ -18,7 +18,7 @@ git add .
 git commit -m "update"
 git remote add origin git@github.com:hugoruscitti/ember-blockly.git
 
-echo "Realizando push a girpages..."
+echo "Realizando push a gitpages..."
 git push --force git@github.com:hugoruscitti/ember-blockly.git master:gh-pages
 
 echo "Limpiando los cambios"
