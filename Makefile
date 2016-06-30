@@ -22,6 +22,7 @@ comandos:
 	@echo ""
 	@echo "    ${G}init${N}              Instala dependencias."
 	@echo "    ${G}update_blockly${N}    Actualiza la versión de blockly."
+	@echo "    ${G}sync_blockly${N}      Sincroniza los cambios de blockly."
 	@echo "    ${G}deploy${N}            Sube la demo a gitpages."
 	@echo ""
 
@@ -30,14 +31,29 @@ init:
 	$(call log, "Instalando dependencias.")
 	@git submodule update --init
 
-update_blockly:
+copy_blockly:
 	$(call task, "Actualizando blockly.")
-	$(call log, "Actualizando subrepositorio blockly.")
-	@git submodule update --init
 	$(call log, "Copiando archivos al directorio vendor.")
 	@cp blockly/blockly_compressed.js vendor
 	@cp blockly/blocks_compressed.js  vendor
 	@cp blockly/msg/js/es.js vendor
+	$(call log, "Recorda llamar al comando sync_blockly para subir los cambios al repositorio")
+
+pull_blockly:
+	$(call task, "Obteniendo cambios del repositorio de blockly")
+	cd blockly; git pull origin master
+
+update_blockly: pull_blockly copy_blockly
+
+
+sync_blockly:
+	git add blockly
+	git add vendor/blockly_compressed.js
+	git add vendor/blocks_compressed.js
+	git add vendor/es.js
+	git commit -m "Actualizando blockly"
+	git push
+
 
 deploy:
 	$(call task, "Realizando deploy.")
