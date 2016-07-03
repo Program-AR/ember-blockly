@@ -3,29 +3,36 @@ import layout from '../templates/components/ember-blockly';
 
 export default Ember.Component.extend({
   layout,
+  withZoom: true,
+  withTrash: true,
+  blocks: [],
 
   didInsertElement() {
 
     this.createSection("section_control", "Control");
     this.createSection("section_logic", "Lógica");
 
+    let toolbox = this.createToolbox(this.get("blocks"));
 
-    let toolbox = this.createToolbox([
-      'section_control', 'controls_if', 'controls_if_else', 'controls_whileUntil',
-      'section_logic', 'logic_compare', 'logic_operation', 'logic_boolean']);
+      /*
+
+      */
 
     let options = {
        toolbox: toolbox,
-       trashcan: true,
-       zoom: {
+       trashcan: this.get("withTrash"),
+     };
+
+     if (this.get("withZoom")) {
+       options['zoom'] = {
          controls: true,
          wheel: false,
          startScale: 1.0,
          maxScale: 3,
          minScale: 0.3,
          scaleSpeed: 1.2
-       },
-     };
+       };
+     }
 
     let workspace = Blockly.inject('blocklyDiv', options);
   },
