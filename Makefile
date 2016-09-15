@@ -21,6 +21,7 @@ comandos:
 	@echo "  ${Y}Generales de la aplicación${N}"
 	@echo ""
 	@echo "    ${G}init${N}              Instala dependencias."
+	@echo "    ${G}version${N}           Publica una versión nueva."
 	@echo "    ${G}deploy${N}            Sube la demo a gitpages."
 	@echo ""
 
@@ -29,6 +30,9 @@ init:
 	$(call log, "Instalando dependencias.")
 	@npm install
 	@bower install
+
+version:
+	ember release
 
 deploy:
 	$(call task, "Realizando deploy.")
