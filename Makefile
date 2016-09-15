@@ -33,6 +33,7 @@ init:
 
 version:
 	ember release
+	npm publish
 
 deploy:
 	$(call task, "Realizando deploy.")
