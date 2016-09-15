@@ -7,9 +7,9 @@ module.exports = function(defaults) {
     // Add options here
   });
 
-  app.import("vendor/blockly_compressed.js");
-  app.import("vendor/blocks_compressed.js");
-  app.import("vendor/es.js");
+  app.import("bower_components/blockly-package/blockly_compressed.js");
+  app.import("bower_components/blockly-package/blocks_compressed.js");
+  app.import("bower_components/blockly-package/es.js");
 
   return app.toTree();
 };
