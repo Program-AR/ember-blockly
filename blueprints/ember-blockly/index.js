@@ -4,9 +4,9 @@ module.exports = {
   included: function(app) {
     this._super.included(app);
 
-    app.import("bower_components/blockly-package/blockly_compressed.js");
-    app.import("bower_components/blockly-package/blocks_compressed.js");
-    app.import("bower_components/blockly-package/es.js");
+    app.import(app.bowerDirectory + "/blockly-package/blockly_compressed.js");
+    app.import(app.bowerDirectory + "/blockly-package/blocks_compressed.js");
+    app.import(app.bowerDirectory + "/blockly-package/es.js");
   },
 
   normalizeEntityName: function() {},
