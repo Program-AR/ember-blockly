@@ -13,3 +13,14 @@ g.blocklyDisabled path.blocklyPath {
   transform: translateX(-25px) !important;
   cursor: default !important;
 }
+
+
+
+pre {
+  border: 1px solid gray;
+  padding: 10px;
+}
+
+.ember-blockly-container {
+  border: 1px solid red;
+}

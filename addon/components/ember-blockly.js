@@ -5,14 +5,28 @@ export default Ember.Component.extend({
   layout,
   withZoom: true,
   withTrash: true,
+  classNames: ['ember-blockly-container'],
   blocks: [],
+  current_blocks: Ember.computed.oneWay('blocks'),
+  workspaceElement: null,
+  workspace: '<xml xmlns="http://www.w3.org/1999/xhtml"></xml>',
+
+  observeBlocks: Ember.observer('blocks', function() {
+    this.set('current_blocks', this.get('blocks'));
+    console.log("Cambiaron los bloques!");
+    this.updateToolbox(this.get('current_blocks'));
+  }),
+
+  observeWorkspace: Ember.observer('workspace', function() {
+    console.log("Cambió el workspace");
+  }),
 
   didInsertElement() {
 
     this.createSection("section_control", "Control");
     this.createSection("section_logic", "Lógica");
 
-    let toolbox = this.createToolbox(this.get("blocks"));
+    let toolbox = this.createToolbox(this.get("current_blocks"));
 
       /*
 
@@ -34,7 +48,24 @@ export default Ember.Component.extend({
        };
      }
 
-    let workspace = Blockly.inject('blocklyDiv', options);
+    let element = this.$().find("div")[0];
+
+    let workspace = Blockly.inject(element, options);
+    this.set('workspaceElement', workspace);
+
+    workspace.addChangeListener(() => {
+      this.onUpdate();
+    });
+  },
+
+  willDestroyElement() {
+    //this.get('workspaceElement').removeChangeListener(this.onUpdate);
+  },
+
+  onUpdate(event) {
+    let xml = Blockly.Xml.workspaceToDom(this.get('workspaceElement'));
+    let xml_text = Blockly.Xml.domToText(xml);
+    this.set('workspace', xml_text);
   },
 
   createSection(name, label) {
@@ -61,5 +92,10 @@ export default Ember.Component.extend({
     toolbox.push('</xml>');
 
     return toolbox.join("\n");
+  },
+
+  updateToolbox(bloques) {
+    let toolbox = this.createToolbox(this.get("current_blocks"));
+    this.get('workspaceElement').updateToolbox(toolbox);
   }
 });

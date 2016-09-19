@@ -2,11 +2,36 @@
 
 <h2>Simple usage</h2>
 
-<p>
-\{{ember-blockly blocks=blocks_array withZoom=true withTrash=true}}
-</p>
+<pre>\{{ember-blockly blocks=blocks_array withZoom=true withTrash=true}}</pre>
 
 {{ember-blockly
       blocks=blocks
+      withZoom=true
+      withTrash=true}}
+
+<h2>Changing context and reload</h2>
+
+<p>You can reset the workspace or the toolbox too:</p>
+
+<pre>\{{ember-blockly blocks=blocks_array workspace=workspace withZoom=true withTrash=true}}</pre>
+
+
+<div>
+  <button {{action "setSimpleToolbar"}}>Set simple toobox</button>
+  <button {{action "setOtherToolbar"}}>Set other toobox</button>
+</div>
+
+<div>
+  <button {{action "clearWorkspace"}}>Clear workspace</button>
+  <button {{action "setASimpleWorkspace"}}>Set a simple workspace</button>
+</div>
+
+<p>Workspace: {{workspaceDemo2}}</p>
+
+<p>Blocks: {{blocksDemo2}}</p>
+
+{{ember-blockly
+      blocks=blocksDemo2
+      workspace=workspaceDemo2
       withZoom=true
       withTrash=true}}
