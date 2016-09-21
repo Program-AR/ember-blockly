@@ -24,6 +24,39 @@ pre {
 .ember-blockly-container {
   border: 1px solid red;
 
-  width: 800px;
-  height: 400px;
+  width: 100%;
+  min-height: 400px;
+}
+
+.flexbox-container {
+  display: flex;
+
+overflow: auto;
+flex-shrink: 0;
+}
+
+.flexbox-direction-row {
+  flex-direction: row;
+}
+
+.flexbox-direction-column {
+  flex-direction: column;
+}
+
+.column {
+  flex-grow: 1;
+  outline: 1px solid black;
+  padding: 2px;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.red {
+  background-color: red;
+}
+
+.blue {
+  background-color: blue;
 }

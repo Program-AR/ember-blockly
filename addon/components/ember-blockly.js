@@ -72,9 +72,9 @@ export default Ember.Component.extend({
     this.set('blocklyDiv', blocklyDiv);
     this.set('blocklyArea', blocklyArea);
 
-    window.addEventListener('resize', () => {
+    $(window).bind("resize.blockly", () => {
       this._onresize();
-    }, false);
+    });
 
     workspace.addChangeListener(() => {
       this.onUpdate();
@@ -86,12 +86,14 @@ export default Ember.Component.extend({
   },
 
   _onresize() {
+    console.log('resize');
     let blocklyDiv = this.get('blocklyDiv');
     let blocklyArea = this.get('blocklyArea');
     let element = blocklyArea;
     let x = 0;
     let y = 0;
 
+    // itera 'hacia arriba' en el dom para conocer el desplazamiento total.
     do {
       x += element.offsetLeft;
       y += element.offsetTop;
@@ -105,7 +107,7 @@ export default Ember.Component.extend({
   },
 
   willDestroyElement() {
-    //this.get('workspaceElement').removeChangeListener(this.onUpdate);
+    $(window).unbind("resize.blockly");
   },
 
   onUpdate(event) {

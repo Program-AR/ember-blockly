@@ -10,6 +10,7 @@ export default Ember.Controller.extend({
          ],
   workspaceDemo2: '',
   blocksDemo2: ['controls_if'],
+  flexboxColumn: false,
 
   actions: {
     setSimpleToolbar() {
@@ -26,6 +27,18 @@ export default Ember.Controller.extend({
     },
     setASimpleWorkspace() {
       this.set('workspaceDemo2', '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="controls_if" id="f`z3uw:anQ0tZL@R9Im(" x="80" y="27"></block></xml>');
+    },
+    flipFlexboxDirection() {
+      this.toggleProperty('flexboxColumn');
+
+      setTimeout(() => {
+        $(window).trigger('resize');
+
+        setTimeout(() => {
+          $(window).trigger('resize');
+        }, 5000);
+
+      }, 1000);
     }
   }
 });
