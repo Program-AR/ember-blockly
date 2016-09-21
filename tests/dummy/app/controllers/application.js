@@ -30,15 +30,9 @@ export default Ember.Controller.extend({
     },
     flipFlexboxDirection() {
       this.toggleProperty('flexboxColumn');
-
       setTimeout(() => {
         $(window).trigger('resize');
-
-        setTimeout(() => {
-          $(window).trigger('resize');
-        }, 5000);
-
-      }, 1000);
+      }, 1);
     }
   }
 });

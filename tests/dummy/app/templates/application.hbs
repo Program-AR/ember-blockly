@@ -56,16 +56,20 @@
       withZoom=true
       withTrash=true}}
 
-<p>:)</p>
-
 
 <h2>Use inside flexbox</h2>
 
 <p>ember-blockly can be inyected into a flexbox layout easily, you
   only need to define a flexbox and include the ember-blockly component
-  inside it</p>
+  inside it.</p>
 
-<p>{{flexboxColumn}}</p>
+<p>But remember, if show change some attributes or clases related
+  to layout also need to force the resize event:</p>
+
+<pre>setTimeout(() => {
+  $(window).trigger('resize');
+}, 1);
+</pre>
 
 <p><button {{action "flipFlexboxDirection"}}>flip flexbox direction</button></p>
 
@@ -80,3 +84,5 @@
   </div>
   <div class="column blue">C</div>
 </div>
+
+<p>:)</p>

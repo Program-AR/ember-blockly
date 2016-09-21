@@ -82,11 +82,9 @@ export default Ember.Component.extend({
     });
 
     this._onresize();
-    Blockly.svgResize(workspace);
   },
 
   _onresize() {
-    console.log('resize');
     let blocklyDiv = this.get('blocklyDiv');
     let blocklyArea = this.get('blocklyArea');
     let element = blocklyArea;
@@ -104,6 +102,7 @@ export default Ember.Component.extend({
     blocklyDiv.style.top = `${y}px`;
     blocklyDiv.style.width = `${blocklyArea.offsetWidth}px`;
     blocklyDiv.style.height = `${blocklyArea.offsetHeight}px`;
+    Blockly.svgResize(this.get('workspaceElement'));
   },
 
   willDestroyElement() {

@@ -14,8 +14,6 @@ g.blocklyDisabled path.blocklyPath {
   cursor: default !important;
 }
 
-
-
 pre {
   border: 1px solid gray;
   padding: 10px;
@@ -26,13 +24,11 @@ pre {
 
   width: 100%;
   min-height: 400px;
+  height: 100%;
 }
 
 .flexbox-container {
   display: flex;
-
-overflow: auto;
-flex-shrink: 0;
 }
 
 .flexbox-direction-row {
@@ -45,8 +41,8 @@ flex-shrink: 0;
 
 .column {
   flex-grow: 1;
-  outline: 1px solid black;
-  padding: 2px;
+  border: 1px solid black;
+  text-align:center;
 }
 
 .yellow {
@@ -59,4 +55,5 @@ flex-shrink: 0;
 
 .blue {
   background-color: blue;
+  color: white;
 }
