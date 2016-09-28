@@ -28,6 +28,12 @@ export default Ember.Controller.extend({
     setASimpleWorkspace() {
       this.set('workspaceDemo2', '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="controls_if" id="f`z3uw:anQ0tZL@R9Im(" x="80" y="27"></block></xml>');
     },
+    setAnotherWorkspace() {
+      this.set('workspaceDemo2', '<xml xmlns="http://www.w3.org/1993/xhtml"><block type="controls_if_else" id="f`z3u2w:an2Q0tZL@R9Im(" x="180" y="127"></block></xml>');
+    },
+    onChangeWorkspace(workspace) {
+      this.set('workspaceDemoReturned', workspace);
+    },
     flipFlexboxDirection() {
       this.toggleProperty('flexboxColumn');
       setTimeout(() => {

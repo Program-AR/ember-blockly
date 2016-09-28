@@ -12,7 +12,6 @@ export default Ember.Component.extend({
   current_blocks: Ember.computed.oneWay('blocks'),
   workspaceElement: null,
   workspace: '<xml xmlns="http://www.w3.org/1999/xhtml"></xml>',
-  isInternalWorkspaceChange: false,
 
   observeBlocks: Ember.observer('blocks', function() {
     this.set('current_blocks', this.get('blocks'));
@@ -20,10 +19,6 @@ export default Ember.Component.extend({
   }),
 
   observeWorkspace: Ember.observer('workspace', function() {
-
-    if (this.get('isInternalWorkspaceChange')) {
-      return;
-    }
 
     let workspace = this.get('workspaceElement');
     let xml_text = this.get('workspace');
@@ -110,11 +105,9 @@ export default Ember.Component.extend({
   },
 
   onUpdate(event) {
-    this.set('isInternalWorkspaceChange', true);
     let xml = Blockly.Xml.workspaceToDom(this.get('workspaceElement'));
     let xml_text = Blockly.Xml.domToText(xml);
-    this.set('workspace', xml_text);
-    this.set('isInternalWorkspaceChange', false);
+    this.sendAction("onChangeWorkspace", xml_text);
   },
 
   createSection(name, label) {

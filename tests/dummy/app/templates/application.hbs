@@ -32,7 +32,10 @@
     },
     setASimpleWorkspace() {
       this.set('workspaceDemo2', '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="controls_if" id="f`z3uw:anQ0tZL@R9Im(" x="80" y="27"></block></xml>');
-    }
+    },
+    onChangeWorkspace(workspace) {
+      this.set('workspaceDemoReturned', workspace);
+    },
   }
 </pre>
 
@@ -44,15 +47,18 @@
 <div>
   <button {{action "clearWorkspace"}}>Clear workspace</button>
   <button {{action "setASimpleWorkspace"}}>Set a simple workspace</button>
+  <button {{action "setAnotherWorkspace"}}>Set another workspace</button>
 </div>
 
-<p>Workspace: {{workspaceDemo2}}</p>
+<p>Initial Workspace send by parameter: {{workspaceDemo2}}</p>
+<p>New workspace returned by action: {{workspaceDemoReturned}}</p>
 
 <p>Blocks: {{blocksDemo2}}</p>
 
 {{ember-blockly
       blocks=blocksDemo2
       workspace=workspaceDemo2
+      onChangeWorkspace="onChangeWorkspace"
       withZoom=true
       withTrash=true}}
 
