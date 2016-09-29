@@ -10,5 +10,6 @@ module.exports = {
     app.import(app.bowerDirectory + "/blockly-package/blockly_compressed.js");
     app.import(app.bowerDirectory + "/blockly-package/blocks_compressed.js");
     app.import(app.bowerDirectory + "/blockly-package/es.js");
+    app.import(app.bowerDirectory + "/blockly-package/javascript_compressed.js");
   },
 };
