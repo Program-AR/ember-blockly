@@ -33,6 +33,7 @@ export default Ember.Component.extend({
   }),
 
   didInsertElement() {
+
     if (this.get('disablePreloadAudio')) {
       Blockly.WorkspaceSvg.prototype.preloadAudio_ = function() {};
     }
@@ -128,8 +129,20 @@ export default Ember.Component.extend({
     toolbox.push('<xml>');
 
     bloques.forEach((bloque) => {
-      toolbox.push(`<block type="${bloque}"></block>`);
+
+      if (bloque['category']) {
+        toolbox.push(`<category name="${bloque.category}">`);
+
+        bloque.blocks.forEach((bloque_en_categoria) => {
+          toolbox.push(`  <block type="${bloque_en_categoria}"></block>`);
+        });
+
+        toolbox.push('</category>');
+      } else {
+        toolbox.push(`<block type="${bloque}"></block>`);
+      }
     });
+
 
     toolbox.push('</xml>');
 

@@ -12,6 +12,17 @@ export default Ember.Controller.extend({
   blocksDemo2: ['controls_if'],
   flexboxColumn: false,
 
+  blocksWithCategories: [
+    {
+      category: 'Logic',
+      blocks: ['controls_if', 'controls_if_else']
+    },
+    {
+      category: 'Bloques adicionales',
+      blocks: ['controls_repeat']
+    }
+  ],
+
   actions: {
     setSimpleToolbar() {
       this.set('blocksDemo2', ['controls_if']);
