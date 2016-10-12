@@ -1,5 +1,6 @@
 # Ember-blockly
 
-This README outlines the details of collaborating on this Ember addon.
+
+- DEMO: http://hugoruscitti.github.io/ember-blockly/
 
 ![](images/screenshot.png)
