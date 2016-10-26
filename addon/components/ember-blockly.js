@@ -150,7 +150,16 @@ export default Ember.Component.extend({
   },
 
   updateToolbox(bloques) {
-    let toolbox = this.createToolbox(this.get("current_blocks"));
+    let toolbox = null;
+
+    // Si se envió un string XML, lo inserta directamente
+    // como toolbox.
+    if (/xml/.test(bloques)) {
+      toolbox = bloques;
+    } else {
+      toolbox = this.createToolbox(this.get("current_blocks"));
+    }
+
     this.get('workspaceElement').updateToolbox(toolbox);
   }
 });

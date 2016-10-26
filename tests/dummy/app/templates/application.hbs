@@ -2,7 +2,7 @@
 
 <h2>Simple usage</h2>
 
-<pre>\{{ember-blockly blocks=blocks_array withZoom=true withTrash=true}}</pre>
+<pre>\{{<b>ember-blockly</b> <b>blocks</b>=blocks_array_or_xml_string <b>withZoom</b>=true <b>withTrash</b>=true}}</pre>
 
 {{ember-blockly
       blocks=blocks
@@ -42,6 +42,7 @@
 <div>
   <button {{action "setSimpleToolbar"}}>Set simple toobox</button>
   <button {{action "setOtherToolbar"}}>Set other toobox</button>
+  <button {{action "setToolboxFromXMLString"}}>Set toobox from xml string</button>
 </div>
 
 <div>
@@ -69,8 +70,8 @@
   only need to define a flexbox and include the ember-blockly component
   inside it.</p>
 
-<p>But remember, if show change some attributes or clases related
-  to layout also need to force the resize event:</p>
+<p>But remember, if you change some attribute or classs related
+  to blockly layout you also need to trigger the resize event:</p>
 
 <pre>setTimeout(() => {
   $(window).trigger('resize');

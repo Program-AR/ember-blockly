@@ -9,7 +9,7 @@ export default Ember.Controller.extend({
            'logic_compare', 'logic_operation', 'logic_boolean'
          ],
   workspaceDemo2: '',
-  blocksDemo2: ['controls_if'],
+  blocksDemo2: ['math_number', 'text', 'controls_if'],
   flexboxColumn: false,
 
   blocksWithCategories: [
@@ -32,6 +32,17 @@ export default Ember.Controller.extend({
            'section_control',
            'controls_if', 'controls_if_else', 'controls_whileUntil',
       ]);
+    },
+    setToolboxFromXMLString() {
+      let xmlString = `
+        <xml>
+            <block type="section_control"></block>
+            <block type="controls_if"></block>
+            <block type="controls_if_else"></block>
+        </xml>
+      `;
+
+      this.set('blocksDemo2', xmlString);
     },
     clearWorkspace() {
       this.set('workspaceDemo2', "");
