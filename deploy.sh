@@ -2,7 +2,7 @@
 set -e
 
 echo "Compilando ..."
-ember build --prod
+ember build
 
 rm -rf out || exit 0;
 mkdir out;
