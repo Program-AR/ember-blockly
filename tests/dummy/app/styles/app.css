@@ -20,8 +20,6 @@ pre {
 }
 
 .ember-blockly-container {
-  border: 1px solid red;
-
   width: 100%;
   min-height: 400px;
   height: 100%;
@@ -57,4 +55,20 @@ pre {
 .blue {
   background-color: blue;
   color: white;
+}
+
+table {
+  border: 1px solid black;
+  margin-top: 1em;
+}
+
+table th {
+  text-align: left;
+  padding: 10px;
+  border: 1px solid #bbb;
+}
+
+table td {
+  border: 1px solid #bbb;
+  padding: 10px;
 }

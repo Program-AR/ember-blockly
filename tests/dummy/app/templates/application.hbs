@@ -110,3 +110,98 @@
 <pre>\{{ember-blockly blocks=blocksWithCategories}}</pre>
 
 {{ember-blockly blocks=blocksWithCategories}}
+
+
+<h2>Parameters</h2>
+
+<p>You can override any blockly options values listed in blockly
+<a href="https://developers.google.com/blockly/guides/get-started/web#configuration" target="_blank">website</a> by using component parameters like:</p>
+
+<pre>\{{ember-blockly blocks=blocksWithCategories horizontalLayout=true withZoom=true withTrash=true}}</pre>
+
+<p>Note that <code>zoom</code> and <code>trash</code> parameters must be
+  specified as <code>withZoom</code> and <code>withTrash</code>.</p>
+
+
+{{ember-blockly blocks=blocksWithCategories media="https:///blockly-demo.appspot.com/static/media/" horizontalLayout=true withZoom=true withTrash=true}}
+
+<p>Parameter list:</p>
+
+<table>
+
+  <tr>
+    <th>Parameter</th>
+    <th>Default value</th>
+  </tr>
+
+  <tr>
+    <td>collapse</td>
+    <td>false</td>
+  </tr>
+
+  <tr>
+    <td>comments</td>
+    <td>true</td>
+  </tr>
+
+  <tr>
+    <td>css</td>
+    <td>true</td>
+  </tr>
+
+  <tr>
+    <td>disable</td>
+    <td>true</td>
+  </tr>
+
+  <tr>
+    <td>grid</td>
+    <td>false</td>
+  </tr>
+
+  <tr>
+    <td>horizontalLayout</td>
+    <td>false</td>
+  </tr>
+
+  <tr>
+    <td>maxBlocks</td>
+    <td>Infinity</td>
+  </tr>
+
+  <tr>
+    <td>media</td>
+    <td>"https:///blockly-demo.appspot.com/static/media/"</td>
+  </tr>
+
+  <tr>
+    <td>oneBasedIndex</td>
+    <td>true</td>
+  </tr>
+
+  <tr>
+    <td>readOnly</td>
+    <td>false</td>
+  </tr>
+
+  <tr>
+    <td>rtl</td>
+    <td>false</td>
+  </tr>
+
+  <tr>
+    <td>scrollbars</td>
+    <td>true</td>
+  </tr>
+
+  <tr>
+    <td>sounds</td>
+    <td>true</td>
+  </tr>
+
+  <tr>
+    <td>toolboxPosition</td>
+    <td>"start"</td>
+  </tr>
+
+</table>

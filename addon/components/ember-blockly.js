@@ -4,14 +4,30 @@ import layout from '../templates/components/ember-blockly';
 
 export default Ember.Component.extend({
   layout,
-  withZoom: true,
-  withTrash: true,
   disablePreloadAudio: true,
   classNames: ['ember-blockly-container'],
   blocks: [],
   current_blocks: Ember.computed.oneWay('blocks'),
   workspaceElement: null,
   workspace: '<xml xmlns="http://www.w3.org/1999/xhtml"></xml>',
+
+  withZoom: true,       // definirá el parámetro "zoom" al llamar a inject.
+  withTrash: true,      // definirá el parámetro "trashcan" al llamar a inject.
+
+  collapse: false,
+  comments: true,
+  css: true,
+  disable: true,
+  grid: false,
+  horizontalLayout: false,
+  maxBlocks: Infinity,
+  media: "https://blockly-demo.appspot.com/static/media/",
+  oneBasedIndex: true,
+  readOnly: false,
+  rtl: false,
+  scrollbars: true,
+  sounds: true,
+  toolboxPosition: "start",
 
   observeBlocks: Ember.observer('blocks', function() {
     this.set('current_blocks', this.get('blocks'));
@@ -46,17 +62,28 @@ export default Ember.Component.extend({
     let options = {
        toolbox: toolbox,
        trashcan: this.get("withTrash"),
+
+       collapse: this.get("collapse"),
+       comments: this.get("comments"),
+       css: this.get("css"),
+       disable: this.get("disable"),
+       horizontalLayout: this.get("horizontalLayout"),
+       maxBlocks: this.get("maxBlocks"),
+       rtl: this.get("rtl"),
+       media: this.get("media"),
+       oneBasedIndex: this.get("oneBasedIndex"),
+       readOnly: this.get("readOnly"),
+       scrollbars: this.get("scrollbars"),
+       sounds: this.get("sounds"),
+       toolboxPosition: this.get("toolboxPosition"),
      };
 
+     if (this.get('grid')) {
+       options['grid'] = this._get_default_grid();
+     }
+
      if (this.get("withZoom")) {
-       options['zoom'] = {
-         controls: true,
-         wheel: false,
-         startScale: 1.0,
-         maxScale: 3,
-         minScale: 0.3,
-         scaleSpeed: 1.2
-       };
+       options['zoom'] = this._get_default_zoom();
      }
 
     let blocklyDiv = this.$().find("div")[0];
@@ -78,6 +105,26 @@ export default Ember.Component.extend({
     });
 
     this._onresize();
+  },
+
+  _get_default_grid() {
+    return {
+      spacing: 20,
+      length: 3,
+      colour: '#ccc',
+      snap: true
+    };
+  },
+
+  _get_default_zoom() {
+    return {
+      controls: true,
+      wheel: false,
+      startScale: 1.0,
+      maxScale: 3,
+      minScale: 0.3,
+      scaleSpeed: 1.2
+    };
   },
 
   _onresize() {
