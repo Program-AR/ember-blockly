@@ -21,7 +21,7 @@ export default Ember.Component.extend({
   grid: false,
   horizontalLayout: false,
   maxBlocks: Infinity,
-  media: "https://blockly-demo.appspot.com/static/media/",
+  media: "blockly-package/media/",
   oneBasedIndex: true,
   readOnly: false,
   rtl: false,
