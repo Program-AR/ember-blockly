@@ -1,0 +1,13 @@
+<h2>Context Menu</h2>
+
+<p>You can enable or disable the context menu by setting the contextMenu property. Try to press right click
+over the workspace to see this context menu.</p>
+
+<pre>\{{ember-blockly blocks=blocksWithCategories contextMenu=contextMenu withZoom=true withTrash=true}}</pre>
+
+<pre>contextMenu={{contextMenu}}</pre>
+
+<p><button class="c-button" {{action "toggleContextMenu"}}>Toggle contextMenu</button></p>
+
+
+{{ember-blockly blocks=blocksWithCategories contextMenu=contextMenu withZoom=false withTrash=false}}

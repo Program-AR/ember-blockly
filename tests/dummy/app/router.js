@@ -6,6 +6,11 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('flexbox');
+  this.route('context');
+  this.route('parameters');
+  this.route('categories');
+  this.route('contextMenu');
 });
 
 export default Router;

@@ -1,0 +1,55 @@
+
+<h2>Changing context and reload</h2>
+
+<p>You can reset the workspace or the toolbox too:</p>
+
+<pre>\{{ember-blockly blocks=blocks_array workspace=workspace withZoom=true withTrash=true}}</pre>
+
+
+<pre>// in a controller or router:
+
+  actions: {
+    setSimpleToolbar() {
+      this.set('blocksDemo2', ['controls_if']);
+    },
+    setOtherToolbar() {
+      this.set('blocksDemo2', [
+           'section_control',
+           'controls_if', 'controls_if_else', 'controls_whileUntil',
+      ]);
+    },
+    clearWorkspace() {
+      this.set('workspaceDemo2', "");
+    },
+    setASimpleWorkspace() {
+      this.set('workspaceDemo2', '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="controls_if" id="f`z3uw:anQ0tZL@R9Im(" x="80" y="27"></block></xml>');
+    },
+    onChangeWorkspace(workspace) {
+      this.set('workspaceDemoReturned', workspace);
+    },
+  }
+</pre>
+
+<div>
+  <button {{action "setSimpleToolbar"}}>Set simple toobox</button>
+  <button {{action "setOtherToolbar"}}>Set other toobox</button>
+  <button {{action "setToolboxFromXMLString"}}>Set toobox from xml string</button>
+</div>
+
+<div>
+  <button {{action "clearWorkspace"}}>Clear workspace</button>
+  <button {{action "setASimpleWorkspace"}}>Set a simple workspace</button>
+  <button {{action "setAnotherWorkspace"}}>Set another workspace</button>
+</div>
+
+<p>Initial Workspace send by parameter: {{workspaceDemo2}}</p>
+<p>New workspace returned by action: {{workspaceDemoReturned}}</p>
+
+<p>Blocks: {{blocksDemo2}}</p>
+
+{{ember-blockly
+      blocks=blocksDemo2
+      workspace=workspaceDemo2
+      onChangeWorkspace="onChangeWorkspace"
+      withZoom=true
+      withTrash=true}}

@@ -72,3 +72,8 @@ table td {
   border: 1px solid #bbb;
   padding: 10px;
 }
+
+.active {
+  background-color: #2196f3 !important;
+  color: white !important;
+}
