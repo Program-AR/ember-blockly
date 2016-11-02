@@ -9,7 +9,7 @@ test('it renders', function(assert) {
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });"
 
-  this.render(hbs`{{ember-blockly disableResize=true}}`);
+  this.render(hbs`{{ember-blockly disableResize=true disablePreloadAudio=true scrollbars=false}}`);
 
   assert.ok(this.$());
 
