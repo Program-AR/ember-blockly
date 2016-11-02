@@ -36,6 +36,8 @@ export default Ember.Component.extend({
   disableBlock: true,
   contextMenu: true,
 
+  disableResize: false,
+
   lastContextMenuFunction: null,
   originalContextMenu: null,
 
@@ -197,6 +199,10 @@ export default Ember.Component.extend({
   },
 
   _onresize() {
+    if (this.get('disableResize')) {
+      return null;
+    }
+
     let blocklyDiv = this.get('blocklyDiv');
     let blocklyArea = this.get('blocklyArea');
     let element = blocklyArea;
