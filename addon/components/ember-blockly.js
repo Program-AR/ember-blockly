@@ -29,6 +29,25 @@ export default Ember.Component.extend({
   sounds: true,
   toolboxPosition: "start",
 
+  /* Context menu options. */
+  duplicate: true,
+  help: true,
+  comment: true,
+  disableBlock: true,
+  contextMenu: true,
+
+  lastContextMenuFunction: null,
+  originalContextMenu: null,
+
+  observeContextMenu: Ember.observer('contextMenu', function() {
+
+    if (this.get('contextMenu')) {
+      this.enableContextMenu();
+    } else {
+      this.disableContextMenu();
+    }
+  }),
+
   observeBlocks: Ember.observer('blocks', function() {
     this.set('current_blocks', this.get('blocks'));
     this.updateToolbox(this.get('current_blocks'));
@@ -95,6 +114,20 @@ export default Ember.Component.extend({
     this.set('blocklyDiv', blocklyDiv);
     this.set('blocklyArea', blocklyArea);
 
+    if (!this.get('contextMenu')) {
+      this.disableContextMenu();
+    }
+
+
+    this.set('originalContextMenu', Blockly.ContextMenu.show);
+
+    // Intenta modificar la función que muestra el menú para
+    // habilitar o deshabilitar opciones.
+    Blockly.ContextMenu.show = (a, b, c) => {
+      b = this._filtrar_items_del_menu(b);
+      this.get('originalContextMenu')(a, b, c);
+    };
+
     $(window).bind("resize.blockly", () => {
       this._onresize();
     });
@@ -105,6 +138,42 @@ export default Ember.Component.extend({
     });
 
     this._onresize();
+  },
+
+  /**
+   * Procesa los items del menú contextual de blockly para habilitar o
+   * deshabilitar algunas opciones.
+   */
+  _filtrar_items_del_menu(items) {
+    return items.filter((i) => {
+
+      if (i.text === Blockly.Msg.DUPLICATE_BLOCK) {
+        i.enabled = this.get('duplicate');
+      }
+
+      if (i.text === Blockly.Msg.HELP) {
+        i.enabled = this.get('help');
+      }
+
+      if (i.text === Blockly.Msg.ADD_COMMENT || i.text === Blockly.Msg.REMOVE_COMMENT) {
+        i.enabled = this.get('comment');
+      }
+
+      if (i.text === Blockly.Msg.DISABLE_BLOCK || i.text === Blockly.Msg.ENABLE_BLOCK) {
+        i.enabled = this.get('disableBlock');
+      }
+
+      return true;
+    });
+  },
+
+  disableContextMenu() {
+    this.set('lastContextMenuFunction', Blockly.ContextMenu.show);
+    Blockly.ContextMenu.show = function() {};
+  },
+
+  enableContextMenu() {
+    Blockly.ContextMenu.show = this.get('lastContextMenuFunction');
   },
 
   _get_default_grid() {

@@ -3,11 +3,23 @@
 <p>You can enable or disable the context menu by setting the contextMenu property. Try to press right click
 over the workspace to see this context menu.</p>
 
-<pre>\{{ember-blockly blocks=blocksWithCategories contextMenu=contextMenu withZoom=true withTrash=true}}</pre>
+<pre>\{{ember-blockly blocks=blocksWithCategories contextMenu=contextMenu
+  duplicate=duplicate help=help comment=comment disableBlock=disableBlock}}</pre>
 
 <pre>contextMenu={{contextMenu}}</pre>
+<pre>duplicate={{duplicate}}</pre>
+<pre>help={{help}}</pre>
+<pre>comment={{comment}}</pre>
+<pre>disableBlock={{disableBlock}}</pre>
 
-<p><button class="c-button" {{action "toggleContextMenu"}}>Toggle contextMenu</button></p>
+<p>
+  <button class="c-button" {{action "toggleContextMenu"}}>Toggle contextMenu</button>
+  <button class="c-button" {{action "toggleDuplicate"}}>Toggle duplicate</button>
+  <button class="c-button" {{action "toggleHelp"}}>Toggle help</button>
+  <button class="c-button" {{action "toggleComment"}}>Toggle comment</button>
+  <button class="c-button" {{action "toggleDisable"}}>Toggle disableBlock</button>
+</p>
 
-
-{{ember-blockly blocks=blocksWithCategories contextMenu=contextMenu withZoom=false withTrash=false}}
+{{ember-blockly blocks=blocksWithCategories contextMenu=contextMenu
+  duplicate=duplicate help=help comment=comment disableBlock=disableBlock
+}}

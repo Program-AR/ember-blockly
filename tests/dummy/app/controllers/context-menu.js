@@ -2,6 +2,10 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   contextMenu: true,
+  duplicate: true,
+  help: true,
+  comment: true,
+  disableBlock: true,
 
   blocksWithCategories: [
     {
@@ -17,7 +21,19 @@ export default Ember.Controller.extend({
   actions: {
     toggleContextMenu() {
       this.toggleProperty('contextMenu');
-    }
+    },
+    toggleDuplicate() {
+      this.toggleProperty('duplicate');
+    },
+    toggleComment() {
+      this.toggleProperty('comment');
+    },
+    toggleHelp() {
+      this.toggleProperty('help');
+    },
+    toggleDisable() {
+      this.toggleProperty('disableBlock');
+    },
   }
 
 });
