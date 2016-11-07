@@ -11,6 +11,7 @@ Router.map(function() {
   this.route('parameters');
   this.route('categories');
   this.route('contextMenu');
+  this.route('highlight');
 });
 
 export default Router;

@@ -1,0 +1,15 @@
+<h2>Highlight blocks usage</h2>
+
+<pre>\{{<b>ember-blockly</b> highlightedBlock="block_id"}}</pre>
+
+{{ember-blockly
+      blocks=blocks
+      withZoom=true
+      withTrash=true
+      highlightedBlock=highlightBlockId
+      onChangeWorkspace="onChangeWorkspace"}}
+
+<p>
+  <button class="c-button" {{action "viewXML"}}>Ver xml</button>
+  <button class="c-button" {{action "highlightBlock"}}>Highlight block</button>
+</p>

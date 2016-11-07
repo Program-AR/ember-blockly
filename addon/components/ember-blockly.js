@@ -41,6 +41,9 @@ export default Ember.Component.extend({
   lastContextMenuFunction: null,
   originalContextMenu: null,
 
+  /* Highlighted block */
+  highlightedBlock: null,
+
   observeContextMenu: Ember.observer('contextMenu', function() {
 
     if (this.get('contextMenu')) {
@@ -67,6 +70,10 @@ export default Ember.Component.extend({
       Blockly.Xml.domToWorkspace(dom, workspace);
     }
 
+  }),
+
+  observeHighlightedBlock: Ember.observer('highlightedBlock', function() {
+    this.get('workspaceElement').highlightBlock(this.get("highlightedBlock"));
   }),
 
   didInsertElement() {
@@ -111,6 +118,8 @@ export default Ember.Component.extend({
     let blocklyArea = this.$()[0];
 
     let workspace = Blockly.inject(blocklyDiv, options);
+    workspace.traceOn(true); // Habilitar highlight
+    
     this.set('workspaceElement', workspace);
 
     this.set('blocklyDiv', blocklyDiv);
