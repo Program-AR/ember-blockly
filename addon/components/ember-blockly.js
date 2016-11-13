@@ -119,7 +119,7 @@ export default Ember.Component.extend({
 
     let workspace = Blockly.inject(blocklyDiv, options);
     workspace.traceOn(true); // Habilitar highlight
-    
+
     this.set('workspaceElement', workspace);
 
     this.set('blocklyDiv', blocklyDiv);
@@ -265,11 +265,21 @@ export default Ember.Component.extend({
         toolbox.push(`<category name="${bloque.category}">`);
 
         bloque.blocks.forEach((bloque_en_categoria) => {
+
+          if (!Blockly.Blocks[bloque_en_categoria]) {
+            throw new Error(`This block named '${bloque_en_categoria}' don't exist.`);
+          }
+
           toolbox.push(`  <block type="${bloque_en_categoria}"></block>`);
         });
 
         toolbox.push('</category>');
       } else {
+
+        if (!Blockly.Blocks[bloque]) {
+          throw new Error(`This block named '${bloque}' don't exist.`);
+        }
+
         toolbox.push(`<block type="${bloque}"></block>`);
       }
     });

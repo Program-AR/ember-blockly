@@ -12,6 +12,7 @@ Router.map(function() {
   this.route('categories');
   this.route('contextMenu');
   this.route('highlight');
+  this.route('preview');
 });
 
 export default Router;
