@@ -7,6 +7,8 @@ export default Ember.Component.extend({
   workspace: '<xml xmlns="http://www.w3.org/1999/xhtml"></xml>',
   media: "blockly-package/media/",
   readOnly: true,
+  showCode: false,
+  javascriptCode: '',
 
   blockObserver: Ember.observer('block', function() {
     this.clear_workspace();
@@ -32,6 +34,22 @@ export default Ember.Component.extend({
     this.redraw_block();
 
     Blockly.ContextMenu.show = (a, b, c) => {};
+
+    workspace.addChangeListener(() => {
+      this.onUpdate();
+    });
+
+  },
+
+  onUpdate(event) {
+    let xml = Blockly.Xml.workspaceToDom(this.get('workspace'));
+    let xml_text = Blockly.Xml.domToText(xml);
+
+    if (this.get('showCode')) {
+      this.set('javascriptCode', Blockly.JavaScript.workspaceToCode(this.get('workspace')));
+    }
+
+    this.sendAction("onChangeWorkspace", xml_text);
   },
 
   redraw_block() {

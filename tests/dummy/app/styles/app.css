@@ -100,3 +100,25 @@ table td {
 .list li:hover {
   background-color: yellow;
 }
+
+.code-preview {
+  position: absolute;
+  left: 350px;
+  height: 135px;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.code-preview span {
+  color: rgba(0, 0, 255, 0.43)
+}
+
+
+.core-preview-in-blockly {
+  z-index: 8;
+  position: relative;
+  background-color: rgba(175, 175, 175, 0.14);
+  border: 1px solid rgba(128, 128, 128, 0.1);
+  margin-left: 50%;
+}
