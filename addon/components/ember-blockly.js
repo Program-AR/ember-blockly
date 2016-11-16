@@ -244,7 +244,6 @@ export default Ember.Component.extend({
 
     if (this.get('showCode')) {
       this.set('javascriptCode', Blockly.JavaScript.workspaceToCode(this.get('workspaceElement')));
-      console.log(this.get('javascriptCode'));
     }
 
   },

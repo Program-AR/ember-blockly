@@ -14,6 +14,7 @@ Router.map(function() {
   this.route('highlight');
   this.route('preview');
   this.route('custom');
+  this.route('complexCustom');
 });
 
 export default Router;

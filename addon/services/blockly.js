@@ -14,54 +14,32 @@ export default Ember.Service.extend({
     Blockly.Blocks[name] = {
       init: function() {
         this.jsonInit(options);
-        /*
-          {
-          "message0": message, //'Decir %1',
-          "message1": "otro %1 ahora ",
-          "message2": "más",
-
-          "args1": [
-            {
-              "type": "input_value",
-              "name": "mensaje",
-              "check": "String"
-            }
-          ],
-
-          "previousStatement": previousStatement,
-          "nextStatement": nextStatement,
-          "colour": colour
-        });
-        */
-
       }
     };
-
 
     if (!Blockly.MyLanguage) {
       Blockly.MyLanguage = Blockly.JavaScript;
     }
 
-
     if (options.code) {
-      Blockly.MyLanguage[name] = function(/*block*/) {
-        //var segundos = Blockly.MyLanguage.valueToCode(block, 'segundos') || null;
-        //let programa = Blockly.JavaScript.statementToCode(block, 'program');
-        //let codigo = `${programa}`;
+      Blockly.MyLanguage[name] = function(block) {
+        let variables = options.code.match(/\$(\w+)/g);
+        let code = options.code;
 
-        return options.code;
+        if (variables) {
+          variables.forEach((v) => {
+            let regex = new RegExp('\\' + v, "g");
+            let variable_name = v.slice(1);
+
+            var variable_object = Blockly.MyLanguage.valueToCode(block, variable_name) || null;
+
+            code = code.replace(regex, variable_object);
+          });
+        }
+
+        return code;
       };
     }
-
-
-
-    /*
-    name: 'my-block',
-    descripcion: 'Mover abajo',
-    icono: '../../iconos/abajo.png',
-    comportamiento: 'MoverACasillaAbajo',
-    argumentos: '{}',
-    */
 
   }
 });

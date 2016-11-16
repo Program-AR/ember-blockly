@@ -1,0 +1,14 @@
+<h2>Custom blocks (more complex)</h2>
+
+<p>You can create blocks using the
+<a href="https://developers.google.com/blockly/guides/create-custom-blocks/define-blocks" target=_black>JSON</a>
+format, and a string code template (exclusively of ember-blockly), use
+<b>$VARIABLE_NAME</b> to interpolate parameters:</p>
+
+
+{{ember-blockly-preview block="my-block-withParams" showCode=true}}
+
+
+<p>Workspace example:</p>
+
+{{ember-blockly blocks=blocks showCode=true}}
