@@ -1,0 +1,16 @@
+<h2>Custom blocks</h2>
+
+<pre>\{{<b>ember-blockly-preview</b> block="my-block" readOnly=true}}</pre>
+
+{{ember-blockly-preview block="my-block" readOnly=true}}
+
+<pre>blockly: Ember.inject.service(),
+
+[...]
+
+this.get('blockly').createCustomBlock('my-block', {
+  message0: "hola?",
+  colour: 160,
+  code: "alert('hola');"
+});
+</pre>

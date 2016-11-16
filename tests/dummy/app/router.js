@@ -13,6 +13,7 @@ Router.map(function() {
   this.route('contextMenu');
   this.route('highlight');
   this.route('preview');
+  this.route('custom');
 });
 
 export default Router;
