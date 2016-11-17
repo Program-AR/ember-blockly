@@ -1,0 +1,20 @@
+<h2>Helper for custom blocks</h2>
+
+<p>You can create custom blocks easily with this helper:</p>
+
+<pre>blockly.<b>createCustomBlockWithHelper</b>('PatearPelota', {
+  descripcion: 'Patear pelota',
+  icono: 'iconos.pelota.png',
+
+  comportamiento: 'DesencadenarComportamientoSiColisiona',
+  argumentos: '{"comportamiento": SerPateado, idTransicion: "patear"}',
+});
+</pre>
+
+<p>All fields are mandatory, except the <code>code</code> field.</p>
+
+{{ember-blockly-preview block="PatearPelota" showCode=true}}
+
+<p>Workspace example:</p>
+
+{{ember-blockly blocks=blocks showCode=true}}
