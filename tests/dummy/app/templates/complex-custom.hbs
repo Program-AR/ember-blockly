@@ -3,7 +3,24 @@
 <p>You can create blocks using the
 <a href="https://developers.google.com/blockly/guides/create-custom-blocks/define-blocks" target=_black>JSON</a>
 format, and a string code template (exclusively of ember-blockly), use
-<b>$VARIABLE_NAME</b> to interpolate parameters:</p>
+<b>$VARIABLE_NAME</b> to interpolate parameters like this:</p>
+
+
+<pre>blockly.createCustomBlock('my-block-withParams', {
+  message0: "show this text %1 in a window",
+  args0: [
+    {
+      "type": "input_value",
+      "name": <b>"VALUE"</b>,
+      "check": "String"
+    }
+  ],
+  colour: 160,
+  previousStatement: true,
+  nextStatement: true,
+  code: "alert(<b>$VALUE</b>);"
+});
+</pre>
 
 
 {{ember-blockly-preview block="my-block-withParams" showCode=true}}
