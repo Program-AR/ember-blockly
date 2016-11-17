@@ -1,3 +1,9 @@
 <div class="flexbox-container flexbox-direction-row">
-    <div style="position: absolute"></div>
+  {{#if showCode}}
+    <pre class="code-preview"><span>// Código que generará este bloque:</span>
+
+{{javascriptCode}}</pre>
+  {{/if}}
+
+  <div style="position: absolute"></div>
 </div>

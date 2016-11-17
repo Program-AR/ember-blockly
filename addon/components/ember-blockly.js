@@ -10,6 +10,7 @@ export default Ember.Component.extend({
   current_blocks: Ember.computed.oneWay('blocks'),
   workspaceElement: null,
   workspace: '<xml xmlns="http://www.w3.org/1999/xhtml"></xml>',
+  showCode: false,
 
   withZoom: true,       // definirá el parámetro "zoom" al llamar a inject.
   withTrash: true,      // definirá el parámetro "trashcan" al llamar a inject.
@@ -240,6 +241,11 @@ export default Ember.Component.extend({
     let xml = Blockly.Xml.workspaceToDom(this.get('workspaceElement'));
     let xml_text = Blockly.Xml.domToText(xml);
     this.sendAction("onChangeWorkspace", xml_text);
+
+    if (this.get('showCode')) {
+      this.set('javascriptCode', Blockly.JavaScript.workspaceToCode(this.get('workspaceElement')));
+    }
+
   },
 
   createSection(name, label) {

@@ -13,6 +13,9 @@ Router.map(function() {
   this.route('contextMenu');
   this.route('highlight');
   this.route('preview');
+  this.route('custom');
+  this.route('complexCustom');
+  this.route('helperCustom');
 });
 
 export default Router;

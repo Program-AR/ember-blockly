@@ -7,7 +7,7 @@
 
 <p>Also you can change the block in runtime</p>
 
-<pre>\{{<b>ember-blockly-preview</b> block=current_block readOnly=false}}</pre>
+<pre>\{{<b>ember-blockly-preview</b> block=current_block showCode=true readOnly=false}}</pre>
 
 <ul class="list">
   {{#each blocks as |block|}}
@@ -17,7 +17,7 @@
 
 <p>current_block: {{current_block}}</p>
 
-{{ember-blockly-preview block=current_block readOnly=false}}
+{{ember-blockly-preview block=current_block showCode=true readOnly=false}}
 
 
 <p>Note: if you need the full block list use the code:</p>

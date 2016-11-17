@@ -1,0 +1,32 @@
+<h2>Custom blocks</h2>
+
+<p>First, create the block using the <a href="https://developers.google.com/blockly/guides/create-custom-blocks/define-blocks" target=_black>JSON</a>
+format from a controller or similar:</p>
+
+<pre>blockly: Ember.inject.service(),
+
+[...]
+
+this.get('blockly').createCustomBlock('my-block', {
+  message0: "hola?",
+  colour: 160,
+  previousStatement: true,
+  nextStatement: true,
+  code: "alert('hola');"
+});
+</pre>
+
+<p>Then, use it as a block name:</p>
+
+<pre>\{{<b>ember-blockly-preview</b> block="my-block" readOnly=true}}</pre>
+
+{{ember-blockly-preview block="my-block" readOnly=true showCode=true}}
+
+
+<p>Or you can use it in a toolbox with other blocks.</p>
+
+<pre>blocks: ['my-block', 'controls_if', 'logic_boolean']</pre>
+
+<pre>\{{<b>ember-blockly</b> <b>blocks</b>=blocks <b>showCode</b>=true}}</pre>
+
+{{ember-blockly blocks=blocks showCode=true}}
