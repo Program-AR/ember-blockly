@@ -16,6 +16,7 @@ Router.map(function() {
   this.route('custom');
   this.route('complexCustom');
   this.route('helperCustom');
+  this.route('blocksCatalog');
 });
 
 export default Router;

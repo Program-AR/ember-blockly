@@ -1,0 +1,5 @@
+{{#each items as |block|}}
+  {{ember-blockly-list-item selected=selected item=block onSelect=onSelect}}
+{{else}}
+  <p>There is no blocks to show.</p>
+{{/each}}

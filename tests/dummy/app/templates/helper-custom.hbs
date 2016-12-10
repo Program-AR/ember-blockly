@@ -1,4 +1,4 @@
-<h2>Helper for custom blocks</h2>
+<h2>Helpers for custom blocks</h2>
 
 <p>You can create custom blocks easily with this helper:</p>
 
@@ -14,6 +14,13 @@
 <p>All fields are mandatory, except the <code>code</code> field.</p>
 
 {{ember-blockly-preview block="PatearPelota" showCode=true}}
+
+<h2>Blocks alias</h2>
+
+<p>You can create alias to easily refer to blocks too:</p>
+
+<pre>blockly.<b>createAlias</b>('si', 'controls_if');
+blockly.<b>createAlias</b>('int', 'math_number');</pre>
 
 <p>Workspace example:</p>
 

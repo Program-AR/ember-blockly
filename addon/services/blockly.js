@@ -17,6 +17,8 @@ export default Ember.Service.extend({
       }
     };
 
+    Blockly.Blocks[name].isCustomBlock = true;
+
     if (!Blockly.MyLanguage) {
       Blockly.MyLanguage = Blockly.JavaScript;
     }
@@ -62,5 +64,28 @@ export default Ember.Service.extend({
       ],
       code: `hacer(actor_id, "${options.comportamiento}", ${options.argumentos});`,
     });
+  },
+
+  getBlocksList() {
+    return Object.keys(Blockly.Blocks);
+  },
+
+  getCustomBlocksList() {
+    return Object.keys(Blockly.Blocks).filter((e) => {
+      return Blockly.Blocks[e].isCustomBlock}
+    );
+  },
+
+  createAlias(new_name, original_block_name) {
+    let original_block = Blockly.Blocks[original_block_name];
+    Blockly.Blocks[new_name] = Object.assign({}, original_block);
+    Blockly.Blocks[new_name].isCustomBlock = true;
+
+    if (!Blockly.MyLanguage) {
+      Blockly.MyLanguage = Blockly.JavaScript;
+    }
+
+    Blockly.MyLanguage[new_name] = Blockly.JavaScript[original_block_name];
+
   }
 });

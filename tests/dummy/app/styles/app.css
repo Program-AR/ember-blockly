@@ -114,11 +114,28 @@ table td {
   color: rgba(0, 0, 255, 0.43)
 }
 
-
 .core-preview-in-blockly {
   z-index: 8;
   position: relative;
   background-color: rgba(175, 175, 175, 0.14);
   border: 1px solid rgba(128, 128, 128, 0.1);
   margin-left: 50%;
+}
+
+.ember-blockly-list {
+  height: 300px;
+  overflow: scroll;
+  border: 1px solid gray;
+  margin-top: 5px;
+}
+
+.ember-blockly-list-item {
+  border: 1px solid #eee;
+  padding: 2px;
+  margin: 2px;
+  cursor: pointer;
+}
+
+.ember-blockly-list-item.selected {
+  background-color: yellow;
 }
