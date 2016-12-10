@@ -150,6 +150,7 @@ export default Ember.Component.extend({
     });
 
     this._onresize();
+    this.set('workspace', this.get('workspace') + ' ');
   },
 
   /**
