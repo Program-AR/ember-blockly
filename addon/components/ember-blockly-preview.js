@@ -5,7 +5,7 @@ export default Ember.Component.extend({
   layout,
   block: null,
   workspace: '<xml xmlns="http://www.w3.org/1999/xhtml"></xml>',
-  media: "blockly-package/media/",
+  mediaFolder: "blockly-package/media/",
   readOnly: true,
   showCode: false,
   javascriptCode: '',
@@ -20,7 +20,7 @@ export default Ember.Component.extend({
     let options = {
        toolbox: "",
        trashcan: false,
-       media: this.get("media"),
+       media: this.get("mediaFolder"),
        readOnly: this.get('readOnly'),
        scrollbars: false,
      };
