@@ -46,7 +46,8 @@ export default Ember.Component.extend({
     let xml_text = Blockly.Xml.domToText(xml);
 
     if (this.get('showCode')) {
-      this.set('javascriptCode', Blockly.JavaScript.workspaceToCode(this.get('workspace')));
+      let code = Blockly.JavaScript.workspaceToCode(this.get('workspace'));
+      this.set('javascriptCode', js_beautify(code));
     }
 
     this.sendAction("onChangeWorkspace", xml_text);

@@ -8,6 +8,10 @@ export default Ember.Component.extend({
   showCode: true,
   current_block: '',
 
+  cantidad: Ember.computed('blocks.length', function() {
+    return this.get('blocks.length');
+  }),
+
   blocks: Ember.computed('onlyCustom', function() {
     this.set('current_block', '');
 

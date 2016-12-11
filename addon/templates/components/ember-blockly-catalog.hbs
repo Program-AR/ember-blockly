@@ -4,4 +4,7 @@
   {{ember-blockly-preview block=current_block showCode=showCode readOnly=true}}
 {{/if}}
 
+
 {{ember-blockly-list-with-selection selected=current_block items=blocks onSelect=(action 'onSelect')}}
+
+<p>Hay <code>{{cantidad}}</code> bloques en total en el listado anterior.</p>

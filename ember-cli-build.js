@@ -10,6 +10,7 @@ module.exports = function(defaults) {
   app.import("bower_components/blockly-package/blockly_compressed.js");
   app.import("bower_components/blockly-package/blocks_compressed.js");
   app.import("bower_components/blockly-package/es.js");
+  app.import("vendor/beautify.js");
 
   return app.toTree();
 };
