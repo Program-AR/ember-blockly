@@ -13,8 +13,6 @@ export default Ember.Component.extend({
   }),
 
   blocks: Ember.computed('onlyCustom', function() {
-    this.set('current_block', '');
-
     if (this.get('onlyCustom')) {
       return this.get('blockly').getCustomBlocksList();
     } else {
