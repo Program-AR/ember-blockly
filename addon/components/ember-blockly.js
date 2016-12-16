@@ -145,8 +145,11 @@ export default Ember.Component.extend({
     });
 
     workspace.addChangeListener(() => {
-      this.onUpdate();
-      this._onresize();
+      var _this = this;
+      Ember.run(function () {
+        _this.onUpdate();
+        _this._onresize();
+      });
     });
 
     this._onresize();
