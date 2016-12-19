@@ -3,6 +3,8 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   blockly: Ember.inject.service(),
   blocks: ['PatearPelota', 'text', 'si', 'int'],
+  blocks_with_value: ['ParaLaDerecha'],
+
 
   activar() {
     let blockly = this.get('blockly');
@@ -16,6 +18,13 @@ export default Ember.Controller.extend({
       comportamiento: 'DesencadenarComportamientoSiColisiona',
       argumentos: '{"comportamiento": SerPateado, idTransicion: "patear"}',
     });
+
+    blockly.createBlockValue('ParaLaDerecha', {
+      descripcion: 'la derecha',
+      icono: 'iconos.derecha.png',
+      valor: 'DirCasillaDerecha',
+    });
+
   },
 
 });

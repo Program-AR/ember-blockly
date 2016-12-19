@@ -25,3 +25,18 @@ blockly.<b>createAlias</b>('int', 'math_number');</pre>
 <p>Workspace example:</p>
 
 {{ember-blockly blocks=blocks showCode=true}}
+
+
+<h2>Blocks with values</h2>
+
+<p>You can create blocks that represent values:</p>
+
+<pre>blockly.<b>createBlockValue</b>('ParaLaDerecha', {
+  descripcion: 'la derecha',
+  icono: 'iconos.derecha.png',
+  valor: 'DirCasillaDerecha',
+});</pre>
+
+<p>Workspace example:</p>
+
+{{ember-blockly blocks=blocks_with_value showCode=true}}

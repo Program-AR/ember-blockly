@@ -66,6 +66,27 @@ export default Ember.Service.extend({
     });
   },
 
+  createBlockValue(name, options) {
+    let color = goog.color.hexToHsv('#4a6cd4');
+
+    this.createCustomBlock(name, {
+      message0: `%1 ${options.descripcion}`,
+      colour: color,
+      previousStatement: true,
+      nextStatement: true,
+      args0: [
+        {
+          "type": "field_image",
+          "src": `iconos/${options.icono}`,
+          "width": 16,
+          "height": 16,
+          "alt": "*"
+        }
+      ],
+      code: `'${options.valor}'`,
+    });
+  },
+
   getBlocksList() {
     return Object.keys(Blockly.Blocks);
   },
