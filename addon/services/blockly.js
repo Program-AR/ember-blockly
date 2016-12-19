@@ -5,7 +5,7 @@ export default Ember.Service.extend({
   createCustomBlock(name, options) {
     let previousStatement = true;
     let nextStatement = true;
-    let colour = 160;
+    let colour = options.color || 160;
 
     if (Blockly.Blocks[name]) {
       console.warn(`Redefiniendo el bloque ${name}`);
@@ -43,12 +43,13 @@ export default Ember.Service.extend({
       };
     }
 
+    return Blockly.Blocks[name];
   },
 
   createCustomBlockWithHelper(name, options) {
-    let color = goog.color.hexToHsv('#4a6cd4');
+    let color = options.color || goog.color.hexToHsv('#4a6cd4');
 
-    this.createCustomBlock(name, {
+    return this.createCustomBlock(name, {
       message0: `%1 ${options.descripcion}`,
       colour: color,
       previousStatement: true,
@@ -67,9 +68,9 @@ export default Ember.Service.extend({
   },
 
   createBlockValue(name, options) {
-    let color = goog.color.hexToHsv('#4a6cd4');
+    let color = options.color || goog.color.hexToHsv('#4a6cd4');
 
-    this.createCustomBlock(name, {
+    return this.createCustomBlock(name, {
       message0: `%1 ${options.descripcion}`,
       colour: color,
       previousStatement: true,
@@ -108,5 +109,6 @@ export default Ember.Service.extend({
 
     Blockly.MyLanguage[new_name] = Blockly.JavaScript[original_block_name];
 
+    return Blockly.Blocks[new_name];
   }
 });
