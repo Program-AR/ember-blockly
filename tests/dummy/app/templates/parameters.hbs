@@ -9,7 +9,7 @@
   specified as <code>withZoom</code> and <code>withTrash</code>.</p>
 
 
-{{ember-blockly blocks=blocksWithCategories media="https:///blockly-demo.appspot.com/static/media/" horizontalLayout=true withZoom=true withTrash=true}}
+{{ember-blockly disableNotConnectedToMainBlock=false blocks=blocksWithCategories media="https:///blockly-demo.appspot.com/static/media/" horizontalLayout=true withZoom=true withTrash=true}}
 
 <p>Parameter list:</p>
 
@@ -113,6 +113,11 @@
   <tr>
     <td>disableBlock</td>
     <td>true</td>
+  </tr>
+
+  <tr>
+    <td>disableNotConnectedToMainBlock</td>
+    <td>false</td>
   </tr>
 
 </table>

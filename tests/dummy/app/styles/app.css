@@ -3,12 +3,12 @@ body {
   padding-right: 2em;
 }
 
-.blocklyDisabled text {
+.blocklyFlyout .blocklyDisabled text {
   transform: translate(-10px, 4px) !important;
   cursor: default !important;
 }
 
-g.blocklyDisabled path.blocklyPath {
+.blocklyFlyout g.blocklyDisabled path.blocklyPath {
   fill: #000 !important;
   transform: translateX(-25px) !important;
   cursor: default !important;

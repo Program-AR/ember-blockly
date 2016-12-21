@@ -11,6 +11,7 @@ export default Ember.Component.extend({
   workspaceElement: null,
   workspace: '<xml xmlns="http://www.w3.org/1999/xhtml"></xml>',
   showCode: false,
+  disableNotConnectedToMainBlock: false,
 
   withZoom: true,       // definirá el parámetro "zoom" al llamar a inject.
   withTrash: true,      // definirá el parámetro "trashcan" al llamar a inject.
@@ -147,6 +148,11 @@ export default Ember.Component.extend({
     workspace.addChangeListener(() => {
       var _this = this;
       Ember.run(function () {
+
+        if (_this.get('disableNotConnectedToMainBlock')) {
+          workspace.addChangeListener(Blockly.Events.disableOrphans);
+        }
+
         _this.onUpdate();
         _this._onresize();
       });
