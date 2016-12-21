@@ -290,7 +290,13 @@ export default Ember.Component.extend({
             throw new Error(`This block named '${bloque_en_categoria}' don't exist.`);
           }
 
-          toolbox.push(`  <block type="${bloque_en_categoria}"></block>`);
+          if(Blockly.Blocks[bloque_en_categoria].toolbox)
+          {
+            toolbox.push(Blockly.Blocks[bloque_en_categoria].toolbox);
+          }
+          else {
+            toolbox.push(`  <block type="${bloque_en_categoria}"></block>`);
+          }
         });
 
         toolbox.push('</category>');
@@ -300,7 +306,13 @@ export default Ember.Component.extend({
           throw new Error(`This block named '${bloque}' don't exist.`);
         }
 
-        toolbox.push(`<block type="${bloque}"></block>`);
+        if(Blockly.Blocks[bloque_en_categoria].toolbox)
+        {
+          toolbox.push(Blockly.Blocks[bloque_en_categoria].toolbox);
+        }
+        else {
+          toolbox.push(`  <block type="${bloque_en_categoria}"></block>`);
+        }
       }
     });
 
