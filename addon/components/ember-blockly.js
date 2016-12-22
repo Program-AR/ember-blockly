@@ -282,22 +282,28 @@ export default Ember.Component.extend({
     bloques.forEach((bloque) => {
 
       if (bloque['category']) {
-        toolbox.push(`<category name="${bloque.category}">`);
+        if(bloque['custom']) {
+          toolbox.push(`<category name="${bloque.category}" custom="${bloque.custom}">`);
+        }
+        else
+        {
+          toolbox.push(`<category name="${bloque.category}">`);
 
-        bloque.blocks.forEach((bloque_en_categoria) => {
+          bloque.blocks.forEach((bloque_en_categoria) => {
 
-          if (!Blockly.Blocks[bloque_en_categoria]) {
-            throw new Error(`This block named '${bloque_en_categoria}' don't exist.`);
-          }
+            if (!Blockly.Blocks[bloque_en_categoria]) {
+              throw new Error(`This block named '${bloque_en_categoria}' don't exist.`);
+            }
 
-          if(Blockly.Blocks[bloque_en_categoria].toolbox)
-          {
-            toolbox.push(Blockly.Blocks[bloque_en_categoria].toolbox);
-          }
-          else {
-            toolbox.push(`  <block type="${bloque_en_categoria}"></block>`);
-          }
-        });
+            if(Blockly.Blocks[bloque_en_categoria].toolbox)
+            {
+              toolbox.push(Blockly.Blocks[bloque_en_categoria].toolbox);
+            }
+            else {
+              toolbox.push(`  <block type="${bloque_en_categoria}"></block>`);
+            }
+          });
+        }
 
         toolbox.push('</category>');
       } else {
