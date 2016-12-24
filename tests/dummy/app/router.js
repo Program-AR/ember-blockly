@@ -17,6 +17,7 @@ Router.map(function() {
   this.route('complexCustom');
   this.route('helperCustom');
   this.route('blocksCatalog');
+  this.route('dropdown');
 });
 
 export default Router;

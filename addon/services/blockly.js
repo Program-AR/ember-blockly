@@ -2,10 +2,10 @@ import Ember from 'ember';
 
 export default Ember.Service.extend({
 
-  createCustomBlock(name, options) {
+  createCustomBlock(name, options, callback_to_change_block) {
     let previousStatement = true;
     let nextStatement = true;
-    let colour = options.color || 160;
+    options.colour = options.color || '#4453ff';
 
     if (Blockly.Blocks[name]) {
       console.warn(`Redefiniendo el bloque ${name}`);
@@ -14,6 +14,11 @@ export default Ember.Service.extend({
     Blockly.Blocks[name] = {
       init: function() {
         this.jsonInit(options);
+
+        if (callback_to_change_block) {
+          callback_to_change_block.call(this);
+        }
+
       }
     };
 
@@ -43,11 +48,22 @@ export default Ember.Service.extend({
       };
     }
 
-    return Blockly.Blocks[name];
+    return Blockly.Blocks[name]
+  },
+
+  createBlockWithAsyncDropdown(name, options) {
+    function callback_to_change_block() {
+      this.
+        appendDummyInput().
+        appendField(options.label || "").
+        appendField(new Blockly.FieldDropdown(options.callbackDropdown), 'DROPDOWN_VALUE');
+    }
+
+    return this.createCustomBlock(name, options, callback_to_change_block);
   },
 
   createCustomBlockWithHelper(name, options) {
-    let color = options.color || goog.color.hexToHsv('#4a6cd4');
+    let color = options.color || '#4a6cd4';
 
     return this.createCustomBlock(name, {
       message0: `%1 ${options.descripcion}`,
@@ -68,7 +84,7 @@ export default Ember.Service.extend({
   },
 
   createBlockValue(name, options) {
-    let color = options.color || goog.color.hexToHsv('#4a6cd4');
+    let color = options.color || '#4a6cd4';
 
     return this.createCustomBlock(name, {
       message0: `%1 ${options.descripcion}`,

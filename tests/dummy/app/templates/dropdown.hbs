@@ -1,0 +1,24 @@
+<h2>Dropdown</h2>
+
+<p>You can create dropbox blocks by
+prividing a callback with options.</p>
+
+<p>The selected options will be named $DROPDOWN_VALUE in the code template:</p>
+
+<pre>function getDropdownValues() {
+  return [
+    ['Ninguna', 'sin_imagen.png'],
+    [{'src': 'iconos/iconos.pelota.png', 'width': 16, 'height': 16, 'alt': 'pelota'}, 'pelota.png']
+  ];
+}
+
+blockly.createBlockWithAsyncDropdown('sample-dropdown', {
+  label: "Cambiar imagen por ",
+  previousStatement: true,
+  nextStatement: true,
+  callbackDropdown: getDropdownValues,
+  code: 'alert("Ha seleccionado la imagen: $DROPDOWN_VALUE")'
+});
+</pre>
+
+{{ember-blockly-preview block="sample-dropdown" showCode=true readOnly=false}}

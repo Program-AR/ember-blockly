@@ -25,4 +25,6 @@ test('visiting /', function(assert) {
   visitAndCheck('/complexCustom', assert);
   visitAndCheck('/helperCustom', assert);
   visitAndCheck('/blocksCatalog', assert);
+  visitAndCheck('/dropdown', assert);
+
 });
