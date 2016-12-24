@@ -3,6 +3,7 @@ import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
 
 moduleForAcceptance('Acceptance | navegate dummy app');
 
+/*
 function visitAndCheck(route, assert) {
   visit(route);
 
@@ -10,9 +11,17 @@ function visitAndCheck(route, assert) {
     return assert.equal(currentURL(), route, `this route is '${route}' as spected.`);
   });
 }
+*/
 
 test('visiting /', function(assert) {
+  visit('/');
 
+  andThen(function() {
+    return assert.equal(currentURL(), '/', 'this route is /');
+  });
+
+
+  /*
   visitAndCheck('/', assert);
   visitAndCheck('/flexbox', assert);
   visitAndCheck('/parameters', assert);
@@ -26,5 +35,6 @@ test('visiting /', function(assert) {
   visitAndCheck('/helperCustom', assert);
   visitAndCheck('/blocksCatalog', assert);
   visitAndCheck('/dropdown', assert);
+*/
 
 });
