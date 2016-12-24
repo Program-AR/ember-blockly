@@ -3,22 +3,21 @@ import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
 
 moduleForAcceptance('Acceptance | navegate dummy app');
 
-/*
-function visitAndCheck(route, assert) {
-  visit(route);
-
-  andThen(function() {
-    return assert.equal(currentURL(), route, `this route is '${route}' as spected.`);
-  });
-}
-*/
 
 test('visiting /', function(assert) {
-  visit('/');
 
-  andThen(function() {
-    return assert.equal(currentURL(), '/', 'this route is /');
-  });
+	function visitAndCheck(route, assert) {
+		return visit(route).then(function() {
+			 return assert.equal(currentURL(), route, `this route is ${route} as spected`);
+		});
+	}
+
+
+	let p = visitAndCheck('/', assert);
+
+  p = p.then(function() {
+		return visitAndCheck('/flexbox', assert);
+	});
 
 
   /*
