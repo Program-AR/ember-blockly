@@ -6,11 +6,6 @@ moduleForComponent('ember-blockly-catalog', 'Integration | Component | ember blo
 });
 
 test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });"
-
   this.render(hbs`{{ember-blockly-catalog}}`);
-
-  assert.equal(this.$().text().trim(), 'There is no blocks to show.');
-
+  assert.ok(this.$().text().trim());
 });

@@ -36,9 +36,10 @@ export default Ember.Component.extend({
     Blockly.ContextMenu.show = (a, b, c) => {};
 
     workspace.addChangeListener(() => {
-      this.onUpdate();
+      Ember.run(() => {
+        this.onUpdate();
+      });
     });
-
   },
 
   onUpdate(event) {
