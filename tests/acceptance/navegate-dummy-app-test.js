@@ -12,28 +12,39 @@ test('visiting /', function(assert) {
 		});
 	}
 
-
-	let p = visitAndCheck('/', assert);
-
-  p = p.then(function() {
-		return visitAndCheck('/flexbox', assert);
-	});
-
-
-  /*
-  visitAndCheck('/', assert);
-  visitAndCheck('/flexbox', assert);
-  visitAndCheck('/parameters', assert);
-  visitAndCheck('/context', assert);
-  visitAndCheck('/categories', assert);
-  visitAndCheck('/contextMenu', assert);
-  visitAndCheck('/highlight', assert);
-  visitAndCheck('/preview', assert);
-  visitAndCheck('/custom', assert);
-  visitAndCheck('/complexCustom', assert);
-  visitAndCheck('/helperCustom', assert);
-  visitAndCheck('/blocksCatalog', assert);
-  visitAndCheck('/dropdown', assert);
-*/
+	visitAndCheck('/', assert)
+    .then(function () {
+		  return visitAndCheck('/flexbox', assert);
+    })
+    .then(function () {
+		  return visitAndCheck('/parameters', assert);
+    })
+    .then(function () {
+		  return visitAndCheck('/categories', assert);
+    })
+    .then(function () {
+		  return visitAndCheck('/contextMenu', assert);
+    })
+    .then(function () {
+		  return visitAndCheck('/highlight', assert);
+    })
+    .then(function () {
+		  return visitAndCheck('/preview', assert);
+    })
+    .then(function () {
+		  return visitAndCheck('/custom', assert);
+    })
+    .then(function () {
+		  return visitAndCheck('/complexCustom', assert);
+    })
+    .then(function () {
+		  return visitAndCheck('/helperCustom', assert);
+    })
+    .then(function () {
+		  return visitAndCheck('/blocksCatalog', assert);
+    })
+    .then(function () {
+		  return visitAndCheck('/dropdown', assert);
+    });
 
 });
