@@ -22,7 +22,9 @@ comandos:
 	@echo ""
 	@echo "    ${G}init${N}              Instala dependencias."
 	@echo "    ${G}version${N}           Publica una versión nueva."
-	@echo "    ${G}deploy${N}            Sube la demo a gitpages."
+	@echo "    "
+	@echo "    nota: el deploy se realiza automáticamente desde travis"
+	@echo "          a la siguiente URL: http://ember-blockly.surge.sh"
 	@echo ""
 
 init:
@@ -34,9 +36,5 @@ init:
 version:
 	ember release
 	npm publish
-
-deploy:
-	$(call task, "Realizando deploy.")
-	@sh deploy.sh
 
 .PHONY: tmp
