@@ -79,7 +79,7 @@ export default Ember.Service.extend({
           "alt": "*"
         }
       ],
-      code: `hacer(actor_id, "${options.comportamiento}", ${options.argumentos});`,
+      code: options.code || `hacer(actor_id, "${options.comportamiento}", ${options.argumentos});`,
     });
   },
 
