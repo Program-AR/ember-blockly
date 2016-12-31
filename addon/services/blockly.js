@@ -67,7 +67,7 @@ export default Ember.Service.extend({
 
     return this.createCustomBlock(name, {
       message0: `%1 ${options.descripcion}`,
-      colour: color,
+      color: color,
       previousStatement: true,
       nextStatement: true,
       args0: [
@@ -88,7 +88,7 @@ export default Ember.Service.extend({
 
     return this.createCustomBlock(name, {
       message0: `%1 ${options.descripcion}`,
-      colour: color,
+      color: color,
       previousStatement: true,
       nextStatement: true,
       args0: [
