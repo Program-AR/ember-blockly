@@ -65,22 +65,26 @@ export default Ember.Service.extend({
   createCustomBlockWithHelper(name, options) {
     let color = options.color || '#4a6cd4';
 
-    return this.createCustomBlock(name, {
-      message0: `%1 ${options.descripcion}`,
+    let block_def = {
+      message0: options.descripcion,
       color: color,
       previousStatement: true,
       nextStatement: true,
-      args0: [
-        {
-          "type": "field_image",
-          "src": `iconos/${options.icono}`,
-          "width": 16,
-          "height": 16,
-          "alt": "*"
-        }
-      ],
+      args0: [],
       code: options.code || `hacer(actor_id, "${options.comportamiento}", ${options.argumentos});`,
-    });
+    };
+
+    if(options.icono) {
+      block_def.message0 = `%1 ${options.descripcion}`;
+      block_def.args0.push({
+        "type": "field_image",
+        "src": `iconos/${options.icono}`,
+        "width": 16,
+        "height": 16,
+        "alt": "*"
+      });
+    }
+    return this.createCustomBlock(name, block_def);
   },
 
   createBlockValue(name, options) {
