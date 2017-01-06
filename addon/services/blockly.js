@@ -90,11 +90,10 @@ export default Ember.Service.extend({
   createBlockValue(name, options) {
     let color = options.color || '#4a6cd4';
 
-    return this.createCustomBlock(name, {
+    let block = this.createCustomBlock(name, {
       message0: `%1 ${options.descripcion}`,
       color: color,
-      previousStatement: true,
-      nextStatement: true,
+      output: 'String',
       args0: [
         {
           "type": "field_image",
@@ -104,8 +103,13 @@ export default Ember.Service.extend({
           "alt": "*"
         }
       ],
-      code: `'${options.valor}'`,
     });
+
+    Blockly.MyLanguage[name] = function() {
+      return [`'${options.valor}'`, Blockly.JavaScript.ORDER_ATOMIC];
+    };
+
+    return block;
   },
 
   getBlocksList() {
