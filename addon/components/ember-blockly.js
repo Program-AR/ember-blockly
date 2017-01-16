@@ -256,8 +256,12 @@ export default Ember.Component.extend({
     this.sendAction("onChangeWorkspace", xml_text);
 
     if (this.get('showCode')) {
-      let code = Blockly.JavaScript.workspaceToCode(this.get('workspaceElement'));
-      this.set('javascriptCode', js_beautify(code));
+      try {
+        let code = Blockly.JavaScript.workspaceToCode(this.get('workspaceElement'));
+        this.set('javascriptCode', js_beautify(code));
+      } catch (e) {
+        console.warn("No se puede generar el código. Esto seguramente se produce porque la solución tiene un bloque inexistente.", e);
+      }
     }
 
   },
