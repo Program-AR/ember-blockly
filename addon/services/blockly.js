@@ -8,7 +8,7 @@ export default Ember.Service.extend({
     options.colour = options.color || '#4453ff';
 
     if (Blockly.Blocks[name]) {
-      console.warn(`Redefiniendo el bloque ${name}`);
+      //console.warn(`Redefiniendo el bloque ${name}`);
     }
 
     Blockly.Blocks[name] = {
