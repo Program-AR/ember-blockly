@@ -12,7 +12,9 @@ export default Ember.Controller.extend({
   workspace_xml: '',
   actions: {
     viewXML() {
-      console.log(this.get("workspace_xml"));
+      let xml = this.get("workspace_xml");
+      console.log(xml);
+      alert(xml);
     },
     highlightBlock() {
       this.set("highlightBlockId", window.prompt("id del bloque a resaltar"));

@@ -24,7 +24,7 @@ export default Ember.Controller.extend({
       "args1": [
           {"type": "input_statement", "name": "DO"}
       ],
-      code: `function() { $DO };`
+      code: `function cuando_inicia() { $DO };`
     });
 
     //a.appendStatementInput('program');

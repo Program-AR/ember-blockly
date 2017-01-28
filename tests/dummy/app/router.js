@@ -19,6 +19,7 @@ Router.map(function() {
   this.route('blocksCatalog');
   this.route('dropdown');
   this.route('topblock');
+  this.route('playground');
 });
 
 export default Router;

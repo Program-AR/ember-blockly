@@ -4,6 +4,7 @@ import layout from '../templates/components/ember-blockly-preview';
 export default Ember.Component.extend({
   layout,
   block: null,
+    classNames: ['ember-blockly-container'],
   workspace: '<xml xmlns="http://www.w3.org/1999/xhtml"></xml>',
   mediaFolder: "blockly-package/media/",
   readOnly: true,

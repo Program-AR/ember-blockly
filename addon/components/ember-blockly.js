@@ -120,7 +120,6 @@ export default Ember.Component.extend({
     let blocklyArea = this.$()[0];
 
     let workspace = Blockly.inject(blocklyDiv, options);
-    workspace.traceOn(true); // Habilitar highlight
 
     this.set('workspaceElement', workspace);
 
