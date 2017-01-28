@@ -1,6 +1,6 @@
 {
   "name": "ember-blockly",
-  "version": "0.1.40",
+  "version": "0.1.41",
   "description": "The default blueprint for ember-cli addons.",
   "directories": {
     "doc": "doc",
