@@ -2,6 +2,8 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   blocks: [
+           'text_print', 'text', 
+
            'section_control',
            'controls_if', 'controls_if_else', 'controls_whileUntil',
 

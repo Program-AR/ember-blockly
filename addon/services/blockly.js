@@ -3,8 +3,6 @@ import Ember from 'ember';
 export default Ember.Service.extend({
 
   createCustomBlock(name, options, callback_to_change_block) {
-    let previousStatement = true;
-    let nextStatement = true;
     options.colour = options.color || '#4453ff';
 
     if (Blockly.Blocks[name]) {
@@ -38,7 +36,7 @@ export default Ember.Service.extend({
             let regex = new RegExp('\\' + v, "g");
             let variable_name = v.slice(1);
 
-            var variable_object = Blockly.MyLanguage.valueToCode(block, variable_name) || block.getFieldValue(variable_name) || null;
+            var variable_object = Blockly.JavaScript.statementToCode(block, variable_name) || Blockly.MyLanguage.valueToCode(block, variable_name) || block.getFieldValue(variable_name) || null;
 
             code = code.replace(regex, variable_object);
           });
@@ -134,5 +132,9 @@ export default Ember.Service.extend({
     Blockly.MyLanguage[new_name] = Blockly.JavaScript[original_block_name];
 
     return Blockly.Blocks[new_name];
+  },
+
+  setStartHat(state) {
+    Blockly.BlockSvg.START_HAT = state;
   }
 });
