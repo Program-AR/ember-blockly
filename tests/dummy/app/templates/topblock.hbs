@@ -1,4 +1,36 @@
-<h2>Simple usage</h2>
+<h2>Using a top block and disable blocks</h2>
+
+<p>You can create a topblock and inyect in the workspace
+  by sending a workspace property like this:</p>
+
+<pre><b>// in the controller</b>
+xml: '&lt;xml&gt;&lt;block type="al_comenzar" deletable="false" movable="false" x="20" y="20"&gt;&lt;/block&gt;&lt;/xml&gt;',
+</pre>
+
+<pre><b>// in the Route</b>
+activate() {
+
+  let blockly = this.get('blockly');
+
+  blockly.createCustomBlock('al_comenzar', {
+    message0: "Cuando comienza el programa",
+    color: '#ff5555',
+    "message1": "hacer: %1",
+    "args1": [
+        {"type": "input_statement", "name": <b>"DO"</b>}
+    ],
+    code: `function() { <b>$DO</b>};`
+  });
+
+  //a.appendStatementInput('program');
+  this.get('blockly').setStartHat(true);
+}
+</pre>
+
+<p>Note: arguments named <b>DO</b> will be transformed to code
+  as statements, not variables or values.</p>
+
+<p>And then:</p>
 
 <pre>\{{<b>ember-blockly</b>
   <b>blocks</b>=blocks_array_or_xml_string
@@ -6,6 +38,10 @@
   <b>withZoom</b>=true
   <b>showCode</b>=true
   <b>withTrash</b>=false}}</pre>
+
+
+<p>By setting the 'disableNotConnectedToMainBlock' to true, the
+  blocks unconnected will be disabled automatically.</p>
 
 {{ember-blockly
       blocks=blocks

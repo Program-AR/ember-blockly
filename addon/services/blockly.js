@@ -36,7 +36,13 @@ export default Ember.Service.extend({
             let regex = new RegExp('\\' + v, "g");
             let variable_name = v.slice(1);
 
-            var variable_object = Blockly.JavaScript.statementToCode(block, variable_name) || Blockly.MyLanguage.valueToCode(block, variable_name) || block.getFieldValue(variable_name) || null;
+            var variable_object = null;
+
+            if (variable_name === "DO") {
+              variable_object = Blockly.JavaScript.statementToCode(block, variable_name);
+            } else {
+              variable_object = Blockly.MyLanguage.valueToCode(block, variable_name) || block.getFieldValue(variable_name) || null;
+            }
 
             code = code.replace(regex, variable_object);
           });
