@@ -145,16 +145,16 @@ export default Ember.Component.extend({
       this._onresize();
     });
 
-    workspace.addChangeListener(() => {
-      var _this = this;
-      Ember.run(function () {
+    Ember.run(() => {
+      if (this.get('disableNotConnectedToMainBlock')) {
+        workspace.addChangeListener(Blockly.Events.disableOrphans);
+      }
+    });
 
-        if (_this.get('disableNotConnectedToMainBlock')) {
-          workspace.addChangeListener(Blockly.Events.disableOrphans);
-        }
-
-        _this.onUpdate();
-        _this._onresize();
+    Ember.run(() => {
+      workspace.addChangeListener(() => {
+        this.onUpdate();
+        this._onresize();
       });
     });
 
