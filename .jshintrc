@@ -3,7 +3,8 @@
     "document",
     "window",
     "-Promise",
-    "js_beautify"
+    "js_beautify",
+    "alert"
   ],
   "browser": true,
   "boss": true,

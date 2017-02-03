@@ -46,6 +46,14 @@ export default Ember.Component.extend({
   /* Highlighted block */
   highlightedBlock: null,
 
+  style: Ember.computed('showCode', function() {
+    if (this.get('showCode')) {
+      return Ember.String.htmlSafe("");
+    } else {
+      return Ember.String.htmlSafe("display: none;");
+    }
+  }),
+
   observeContextMenu: Ember.observer('contextMenu', function() {
 
     if (this.get('contextMenu')) {
@@ -255,14 +263,14 @@ export default Ember.Component.extend({
       let xml_text = Blockly.Xml.domToText(xml);
       this.sendAction("onChangeWorkspace", xml_text);
 
-      if (this.get('showCode')) {
+      //if (this.get('showCode')) {
         try {
           let code = Blockly.JavaScript.workspaceToCode(this.get('workspaceElement'));
           this.set('javascriptCode', js_beautify(code));
         } catch (e) {
           console.warn("No se puede generar el código. Esto seguramente se produce porque la solución tiene un bloque inexistente.", e);
         }
-      }
+      //}
     });
   },
 
