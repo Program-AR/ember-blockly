@@ -250,19 +250,20 @@ export default Ember.Component.extend({
   },
 
   onUpdate(event) {
-    let xml = Blockly.Xml.workspaceToDom(this.get('workspaceElement'));
-    let xml_text = Blockly.Xml.domToText(xml);
-    this.sendAction("onChangeWorkspace", xml_text);
+    Ember.run(() => {
+      let xml = Blockly.Xml.workspaceToDom(this.get('workspaceElement'));
+      let xml_text = Blockly.Xml.domToText(xml);
+      this.sendAction("onChangeWorkspace", xml_text);
 
-    if (this.get('showCode')) {
-      try {
-        let code = Blockly.JavaScript.workspaceToCode(this.get('workspaceElement'));
-        this.set('javascriptCode', js_beautify(code));
-      } catch (e) {
-        console.warn("No se puede generar el código. Esto seguramente se produce porque la solución tiene un bloque inexistente.", e);
+      if (this.get('showCode')) {
+        try {
+          let code = Blockly.JavaScript.workspaceToCode(this.get('workspaceElement'));
+          this.set('javascriptCode', js_beautify(code));
+        } catch (e) {
+          console.warn("No se puede generar el código. Esto seguramente se produce porque la solución tiene un bloque inexistente.", e);
+        }
       }
-    }
-
+    });
   },
 
   createSection(name, label) {
