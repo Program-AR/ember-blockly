@@ -19,7 +19,7 @@ export default Ember.Controller.extend({
 
     blockly.createCustomBlock('al_comenzar', {
       message0: "Cuando comienza el programa",
-      color: '#ff5555',
+      colour: '#ff5555',
       "message1": "hacer: %1",
       "args1": [
           {"type": "input_statement", "name": "DO"}

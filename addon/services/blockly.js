@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Service.extend({
 
   createCustomBlock(name, options, callback_to_change_block) {
-    options.colour = options.color || '#4453ff';
+    options.colour = options.colour || '#4453ff';
 
     if (Blockly.Blocks[name]) {
       //console.warn(`Redefiniendo el bloque ${name}`);
@@ -67,11 +67,9 @@ export default Ember.Service.extend({
   },
 
   createCustomBlockWithHelper(name, options) {
-    let color = options.color || '#4a6cd4';
-
     let block_def = {
       message0: options.descripcion,
-      color: color,
+      colour: options.colour || '#4a6cd4',
       previousStatement: true,
       nextStatement: true,
       args0: [],
@@ -92,11 +90,9 @@ export default Ember.Service.extend({
   },
 
   createBlockValue(name, options) {
-    let color = options.color || '#4a6cd4';
-
     let block = this.createCustomBlock(name, {
       message0: `%1 ${options.descripcion}`,
-      color: color,
+      colour: options.colour || '#4a6cd4',
       output: 'String',
       args0: [
         {
