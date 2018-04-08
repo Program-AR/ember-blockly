@@ -13,6 +13,9 @@ export default Ember.Controller.extend({
       blocks: ['controls_if', 'controls_if_else']
     },
     {
+      isSeparator: true
+    },
+    {
       category: 'Bloques adicionales',
       blocks: ['controls_repeat']
     }

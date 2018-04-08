@@ -95,10 +95,8 @@ export default Ember.Component.extend({
     this.createSection("section_control", "Control");
     this.createSection("section_logic", "Lógica");
 
-    let toolbox = this.createToolbox(this.get("current_blocks"));
-
     let options = {
-       toolbox: toolbox,
+       toolbox: this.createToolbox(this.get("current_blocks")),
        trashcan: this.get("withTrash"),
 
        collapse: this.get("collapse"),
@@ -293,7 +291,10 @@ export default Ember.Component.extend({
 
     bloques.forEach((bloque) => {
 
-      if (bloque['category']) {
+      if (bloque.isSeparator) {
+        toolbox.push('<sep></sep>');
+
+      } else if (bloque['category']) {
 
         if (bloque['custom']) {
           toolbox.push(`<category name="${bloque.category}" custom="${bloque.custom}">`);
