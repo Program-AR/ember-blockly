@@ -76,7 +76,7 @@ export default Ember.Component.extend({
     workspace.clear();
 
     if (xml_text) {
-      let dom = Blockly.Xml.textToDom(xml_text)
+      let dom = this._moveBlocksFromBehindToolbox(Blockly.Xml.textToDom(xml_text));
       Blockly.Xml.domToWorkspace(dom, workspace);
     }
 
@@ -85,6 +85,27 @@ export default Ember.Component.extend({
   observeHighlightedBlock: Ember.observer('highlightedBlock', function() {
     this.get('workspaceElement').highlightBlock(this.get("highlightedBlock"));
   }),
+
+  _moveBlocksFromBehindToolbox(dom){
+    if( this.get("current_blocks").some(block => block.category) ) return dom;
+    
+    // Issue: https://github.com/google/blockly/issues/1924
+    // If we don't have categories (which means we have just blocks in the toolbox)
+    // then the workspace can be behind the toolbox, then
+    // we need to move every block which is under the toolbox.
+
+    // Does not consider RTL workspaces
+    var toolboxBorder = this.get('workspaceElement').getFlyout_().width_;
+    var x = domChild => parseInt(domChild.getAttribute('x'), 10);
+
+    dom.childNodes.forEach( domChild => {
+      var name = domChild.nodeName.toLowerCase();
+      if ((name == 'block' || name == 'shadow') && domChild.hasAttribute('x')
+        && x(domChild) < toolboxBorder) {
+        domChild.setAttribute('x', toolboxBorder + 15);
+      }
+    });
+  },
 
   didInsertElement() {
 
