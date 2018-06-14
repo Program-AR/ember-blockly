@@ -76,7 +76,8 @@ export default Ember.Component.extend({
     workspace.clear();
 
     if (xml_text) {
-      let dom = this._moveBlocksFromBehindToolbox(Blockly.Xml.textToDom(xml_text));
+      let dom = Blockly.Xml.textToDom(xml_text);
+      this._moveBlocksFromBehindToolbox(dom);
       Blockly.Xml.domToWorkspace(dom, workspace);
     }
 
@@ -87,7 +88,8 @@ export default Ember.Component.extend({
   }),
 
   _moveBlocksFromBehindToolbox(dom){
-    if( this.get("current_blocks").some(block => block.category) ) return dom;
+    // TODO: This method should go away once Blockly is updated.
+    if( this.get("current_blocks").some(block => block.category && block.category !== 'Separator') ) return dom;
     
     // Issue: https://github.com/google/blockly/issues/1924
     // If we don't have categories (which means we have just blocks in the toolbox)
