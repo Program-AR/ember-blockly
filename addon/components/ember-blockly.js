@@ -100,7 +100,7 @@ export default Ember.Component.extend({
     var toolboxBorder = this.get('workspaceElement').getFlyout_().width_;
     var x = domChild => parseInt(domChild.getAttribute('x'), 10);
 
-    dom.childNodes.forEach( domChild => {
+    Array.from(dom.childNodes).forEach( domChild => {
       var name = domChild.nodeName.toLowerCase();
       if ((name == 'block' || name == 'shadow') && domChild.hasAttribute('x')
         && x(domChild) < toolboxBorder) {
