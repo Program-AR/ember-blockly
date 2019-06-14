@@ -5,8 +5,17 @@ node_js:
 
 sudo: false
 
-addons:  
+os:
+  - linux
+
+addons:
   firefox: latest
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - g++-4.9
+    - gcc-4.9
 
 cache:
   directories:
