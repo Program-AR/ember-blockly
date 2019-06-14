@@ -5,8 +5,17 @@ node_js:
 
 sudo: false
 
-addons:  
+os:
+  - linux
+
+addons:
   firefox: latest
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - g++-4.9
+    - gcc-4.9
 
 cache:
   directories:
@@ -30,6 +39,7 @@ before_install:
   - export PATH=/usr/local/phantomjs-2.0.0/bin:$PATH
   - "npm config set spin false"
   - "npm install -g npm@^2"
+  - npm install -g surge
 
 install:
   - npm install -g bower
@@ -37,7 +47,8 @@ install:
   - bower install
 
 after_success:
-  - ember surge
+  - ember build
+  - surge ./dist/ ember-blockly.surge.sh 
 
 script:
   - ember try $EMBER_TRY_SCENARIO test
