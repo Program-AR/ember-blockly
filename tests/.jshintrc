@@ -25,6 +25,7 @@
     "alert"
   ],
   "node": false,
+  "esversion": 9,
   "browser": false,
   "boss": true,
   "curly": true,
@@ -34,7 +35,7 @@
   "evil": true,
   "forin": false,
   "immed": false,
-  "laxbreak": false,
+  "laxbreak": true,
   "newcap": true,
   "noarg": true,
   "noempty": false,
@@ -48,6 +49,6 @@
   "strict": false,
   "white": false,
   "eqnull": true,
-  "esnext": true,
+  "esnext": false,
   "unused": true
 }

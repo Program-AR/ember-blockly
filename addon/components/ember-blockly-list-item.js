@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 import { computed } from '@ember/object';
 import Component from '@ember/component';
 import layout from '../templates/components/ember-blockly-list-item';

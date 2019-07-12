@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 import { run } from '@ember/runloop';
 import { observer } from '@ember/object';
 import Component from '@ember/component';

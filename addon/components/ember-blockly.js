@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 import { run, scheduleOnce } from '@ember/runloop';
 import { htmlSafe } from '@ember/template';
 import { computed, observer } from '@ember/object';
@@ -106,8 +107,7 @@ export default Component.extend({
 
     Array.from(dom.childNodes).forEach( domChild => {
       var name = domChild.nodeName.toLowerCase();
-      if ((name == 'block' || name == 'shadow') && domChild.hasAttribute('x')
-        && x(domChild) < toolboxBorder) {
+      if ((name == 'block' || name == 'shadow') && domChild.hasAttribute('x') && (x(domChild) < toolboxBorder)) {
         domChild.setAttribute('x', toolboxBorder + 15);
       }
     });
@@ -142,11 +142,11 @@ export default Component.extend({
      };
 
      if (this.get('grid')) {
-       options['grid'] = this._get_default_grid();
+       options.grid = this._get_default_grid();
      }
 
      if (this.get("withZoom")) {
-       options['zoom'] = this._get_default_zoom();
+       options.zoom = this._get_default_zoom();
      }
 
     let blocklyDiv = this.$().find("div")[0];
@@ -321,9 +321,9 @@ export default Component.extend({
       if (bloque.isSeparator) {
         toolbox.push('<sep></sep>');
 
-      } else if (bloque['category']) {
+      } else if (bloque.category) {
 
-        if (bloque['custom']) {
+        if (bloque.custom) {
           toolbox.push(`<category name="${bloque.category}" custom="${bloque.custom}">`);
         } else {
           toolbox.push(`<category name="${bloque.category}">`);

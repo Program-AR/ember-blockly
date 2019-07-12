@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 import Service from '@ember/service';
 
 export default Service.extend({
@@ -10,7 +11,7 @@ export default Service.extend({
     }
 
     Blockly.Blocks[name] = {
-      init: function() {
+      init: function () {
         this.jsonInit(options);
 
         if (callback_to_change_block) {
@@ -27,7 +28,7 @@ export default Service.extend({
     }
 
     if (options.code) {
-      Blockly.MyLanguage[name] = function(block) {
+      Blockly.MyLanguage[name] = function (block) {
         let variables = options.code.match(/\$(\w+)/g);
         let code = options.code;
 
@@ -52,7 +53,7 @@ export default Service.extend({
       };
     }
 
-    return Blockly.Blocks[name]
+    return Blockly.Blocks[name];
   },
 
   createBlockWithAsyncDropdown(name, options) {
@@ -76,7 +77,7 @@ export default Service.extend({
       code: options.code || `hacer(actor_id, "${options.comportamiento}", ${options.argumentos});`,
     };
 
-    if(options.icono) {
+    if (options.icono) {
       block_def.message0 = `%1 ${options.descripcion}`;
       block_def.args0.push({
         "type": "field_image",
@@ -105,7 +106,7 @@ export default Service.extend({
       ],
     });
 
-    Blockly.MyLanguage[name] = function() {
+    Blockly.MyLanguage[name] = function () {
       return [`'${options.valor}'`, Blockly.JavaScript.ORDER_ATOMIC];
     };
 
@@ -118,7 +119,8 @@ export default Service.extend({
 
   getCustomBlocksList() {
     return Object.keys(Blockly.Blocks).filter((e) => {
-      return Blockly.Blocks[e].isCustomBlock}
+      return Blockly.Blocks[e].isCustomBlock;
+    }
     );
   },
 
