@@ -56,7 +56,7 @@ install:
   - bower install
 
 after_success:
-  - ember build
+  - ember build --environment=development
   - surge ./dist/ ember-blockly.surge.sh 
 
 script:
