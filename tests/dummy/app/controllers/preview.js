@@ -1,6 +1,6 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   blocks: ['controls_if', 'logic_compare', 'logic_boolean'],
   current_block: ['controls_if'],
 

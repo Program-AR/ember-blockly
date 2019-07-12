@@ -1,6 +1,6 @@
-import Ember from 'ember';
+import Service from '@ember/service';
 
-export default Ember.Service.extend({
+export default Service.extend({
 
   createCustomBlock(name, options, callback_to_change_block) {
     options.colour = options.colour || '#4453ff';

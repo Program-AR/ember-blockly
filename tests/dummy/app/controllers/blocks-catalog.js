@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
-  blockly: Ember.inject.service(),
+export default Controller.extend({
+  blockly: service(),
   blocks: ['my-block', 'controls_if', 'logic_boolean'],
 
   activar() {

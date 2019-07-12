@@ -1,13 +1,17 @@
-import Ember from 'ember';
+import { run, scheduleOnce } from '@ember/runloop';
+import { htmlSafe } from '@ember/template';
+import { computed, observer } from '@ember/object';
+import { oneWay } from '@ember/object/computed';
+import Component from '@ember/component';
 import layout from '../templates/components/ember-blockly';
 
 
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
   disablePreloadAudio: true,
   classNames: ['ember-blockly-container'],
   blocks: [],
-  current_blocks: Ember.computed.oneWay('blocks'),
+  current_blocks: oneWay('blocks'),
   workspaceElement: null,
   workspace: '<xml xmlns="http://www.w3.org/1999/xhtml"></xml>',
   showCode: false,
@@ -46,15 +50,15 @@ export default Ember.Component.extend({
   /* Highlighted block */
   highlightedBlock: null,
 
-  style: Ember.computed('showCode', function() {
+  style: computed('showCode', function() {
     if (this.get('showCode')) {
-      return Ember.String.htmlSafe("");
+      return htmlSafe("");
     } else {
-      return Ember.String.htmlSafe("display: none;");
+      return htmlSafe("display: none;");
     }
   }),
 
-  observeContextMenu: Ember.observer('contextMenu', function() {
+  observeContextMenu: observer('contextMenu', function() {
 
     if (this.get('contextMenu')) {
       this.enableContextMenu();
@@ -63,12 +67,12 @@ export default Ember.Component.extend({
     }
   }),
 
-  observeBlocks: Ember.observer('blocks', function() {
+  observeBlocks: observer('blocks', function() {
     this.set('current_blocks', this.get('blocks'));
     this.updateToolbox(this.get('current_blocks'));
   }),
 
-  observeWorkspace: Ember.observer('workspace', function() {
+  observeWorkspace: observer('workspace', function() {
 
     let workspace = this.get('workspaceElement');
     let xml_text = this.get('workspace');
@@ -83,7 +87,7 @@ export default Ember.Component.extend({
 
   }),
 
-  observeHighlightedBlock: Ember.observer('highlightedBlock', function() {
+  observeHighlightedBlock: observer('highlightedBlock', function() {
     this.get('workspaceElement').highlightBlock(this.get("highlightedBlock"));
   }),
 
@@ -173,13 +177,13 @@ export default Ember.Component.extend({
       this._onresize();
     });
 
-    Ember.run(() => {
+    run(() => {
       if (this.get('disableNotConnectedToMainBlock')) {
         workspace.addChangeListener(Blockly.Events.disableOrphans);
       }
     });
 
-    Ember.run(() => {
+    run(() => {
       workspace.addChangeListener(() => {
         this.onUpdate();
         this._onresize();
@@ -188,7 +192,7 @@ export default Ember.Component.extend({
 
     this._onresize();
 
-    Ember.run.scheduleOnce('afterRender', () => {
+    scheduleOnce('afterRender', () => {
       this.set('workspace', this.get('workspace') + ' ');
     });
   },
@@ -279,7 +283,7 @@ export default Ember.Component.extend({
   },
 
   onUpdate(event) {
-    Ember.run(() => {
+    run(() => {
       let xml = Blockly.Xml.workspaceToDom(this.get('workspaceElement'));
       let xml_text = Blockly.Xml.domToText(xml);
       this.sendAction("onChangeWorkspace", xml_text);

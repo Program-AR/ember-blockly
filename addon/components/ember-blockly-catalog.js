@@ -1,18 +1,20 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
 import layout from '../templates/components/ember-blockly-catalog';
 
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
-  blockly: Ember.inject.service(),
+  blockly: service(),
   onlyCustom: true,
   showCode: true,
   current_block: '',
 
-  cantidad: Ember.computed('blocks.length', function() {
+  cantidad: computed('blocks.length', function() {
     return this.get('blocks.length');
   }),
 
-  blocks: Ember.computed('onlyCustom', function() {
+  blocks: computed('onlyCustom', function() {
     if (this.get('onlyCustom')) {
       return this.get('blockly').getCustomBlocksList();
     } else {
