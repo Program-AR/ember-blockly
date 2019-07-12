@@ -1,6 +1,6 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   blocks: [
            'section_control',
            'controls_if', 'controls_if_else', 'controls_whileUntil',

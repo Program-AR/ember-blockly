@@ -1,9 +1,13 @@
 ---
 language: node_js
 node_js:
-  - "6.11.3"
+  - 'node'
 
 sudo: false
+dist: trusty
+
+addons:
+  chrome: stable
 
 os:
   - linux
@@ -19,13 +23,19 @@ addons:
 
 cache:
   directories:
-    - node_modules
+    - $HOME/.npm
 
 env:
-  - EMBER_TRY_SCENARIO=default
-  - EMBER_TRY_SCENARIO=ember-release
-  - EMBER_TRY_SCENARIO=ember-beta
-  - EMBER_TRY_SCENARIO=ember-canary
+  global:
+    # See https://git.io/vdao3 for details.
+    - JOBS=1
+  matrix:
+    # we recommend new addons test the current and previous LTS
+    # as well as latest stable release (bonus points to beta/canary)
+    - EMBER_TRY_SCENARIO=ember-release
+    - EMBER_TRY_SCENARIO=ember-beta
+    - EMBER_TRY_SCENARIO=ember-canary
+    - EMBER_TRY_SCENARIO=ember-default
 
 matrix:
   fast_finish: true
@@ -38,7 +48,6 @@ before_install:
   - export DISPLAY=:99; sh -e /etc/init.d/xvfb start; sleep 3
   - export PATH=/usr/local/phantomjs-2.0.0/bin:$PATH
   - "npm config set spin false"
-  - "npm install -g npm@^2"
   - npm install -g surge
 
 install:
@@ -47,8 +56,10 @@ install:
   - bower install
 
 after_success:
-  - ember build
+  - ember build --environment=development
   - surge ./dist/ ember-blockly.surge.sh 
 
 script:
-  - ember try $EMBER_TRY_SCENARIO test
+  # Usually, it's ok to finish the test scenario without reverting
+  #  to the addon's original dependency state, skipping "cleanup".
+  - node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO --skip-cleanup

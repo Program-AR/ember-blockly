@@ -1,6 +1,7 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   blocks: [
     'text_print', 'text',
 
@@ -11,7 +12,7 @@ export default Ember.Controller.extend({
     'logic_compare', 'logic_operation', 'logic_boolean'
   ],
 
-  blockly: Ember.inject.service(),
+  blockly: service(),
   xml: '<xml><block type="al_comenzar" deletable="false" movable="false" x="20" y="20"></block></xml>',
 
   activar() {

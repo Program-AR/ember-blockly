@@ -1,10 +1,12 @@
-import Ember from 'ember';
+/*jshint esversion: 6 */
+import { computed } from '@ember/object';
+import Component from '@ember/component';
 import layout from '../templates/components/ember-blockly-list-item';
 
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
   tagName: '',
-  isSelected: Ember.computed('item', 'selected', function() {
+  isSelected: computed('item', 'selected', function() {
     return this.get('item') === this.get('selected');
   })
 });

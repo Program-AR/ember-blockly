@@ -1,7 +1,10 @@
-import Ember from 'ember';
+/*jshint esversion: 6 */
+import { run } from '@ember/runloop';
+import { observer } from '@ember/object';
+import Component from '@ember/component';
 import layout from '../templates/components/ember-blockly-preview';
 
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
   block: null,
     classNames: ['ember-blockly-container'],
@@ -11,7 +14,7 @@ export default Ember.Component.extend({
   showCode: false,
   javascriptCode: '',
 
-  blockObserver: Ember.observer('block', function() {
+  blockObserver: observer('block', function() {
     this.clear_workspace();
     this.redraw_block();
   }),
@@ -37,7 +40,7 @@ export default Ember.Component.extend({
     Blockly.ContextMenu.show = (a, b, c) => {};
 
     workspace.addChangeListener(() => {
-      Ember.run(() => {
+      run(() => {
         this.onUpdate();
       });
     });

@@ -1,6 +1,6 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   workspaceDemo2: '',
   blocksDemo2: ['math_number', 'text', 'controls_if'],
   flexboxColumn: false,
