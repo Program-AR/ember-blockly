@@ -128,6 +128,7 @@ export default Service.extend({
     let original_block = Blockly.Blocks[original_block_name];
     Blockly.Blocks[new_name] = Object.assign({}, original_block);
     Blockly.Blocks[new_name].isCustomBlock = true;
+    Blockly.Blocks[original_block_name].alias = new_name;
 
     if (!Blockly.MyLanguage) {
       Blockly.MyLanguage = Blockly.JavaScript;
