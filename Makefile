@@ -34,7 +34,7 @@ init:
 	@bower install
 
 version:
-	ember release
+	npm version patch
 	npm publish
 
 .PHONY: tmp
