@@ -1,49 +1,20 @@
-<<<<<<< HEAD
 # ember-blockly
 
 [![npm version](https://badge.fury.io/js/ember-blockly.svg)](https://badge.fury.io/js/ember-blockly)
 
 [![Build Status](https://travis-ci.org/Program-AR/ember-blockly.svg?branch=master)](https://travis-ci.org/Program-AR/ember-blockly)
 
-
 ## demo site
 
 - [http://ember-blockly.surge.sh](http://ember-blockly.surge.sh)
 
 ![](images/screenshot.png)
-=======
-my-addon
-==============================================================================
-
-[Short description of the addon.]
-
-Installation
-------------------------------------------------------------------------------
-
-```
-ember install my-addon
-```
-
-
-Usage
-------------------------------------------------------------------------------
-
-[Longer description of how to use the addon in apps.]
-
-
-Contributing
-------------------------------------------------------------------------------
 
 ### Installation
 
-* `git clone <repository-url>`
-* `cd my-addon`
+* `git clone https://github.com/Program-AR/ember-blockly`
+* `cd ember-blockly`
 * `npm install`
-
-### Linting
-
-* `npm run lint:js`
-* `npm run lint:js -- --fix`
 
 ### Running tests
 
@@ -61,5 +32,4 @@ For more information on using ember-cli, visit [https://ember-cli.com/](https://
 License
 ------------------------------------------------------------------------------
 
-This project is licensed under the [MIT License](LICENSE.md).
->>>>>>> 8a55c06... message
+This project is licensed under the [LGPL-3.0](LICENSE.md).
