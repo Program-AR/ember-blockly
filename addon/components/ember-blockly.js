@@ -117,7 +117,7 @@ export default Component.extend({
   didInsertElement() {
 
     if (this.get('disablePreloadAudio')) {
-      Blockly.WorkspaceSvg.prototype.preloadAudio_ = function() {};
+      Blockly.WorkspaceAudio.prototype.preload=function() {};
     }
 
     this.createSection("section_control", "Control");
