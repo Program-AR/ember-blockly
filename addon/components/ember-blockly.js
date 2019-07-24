@@ -84,7 +84,8 @@ export default Component.extend({
       let dom = Blockly.Xml.textToDom(xml_text);
       this._moveBlocksFromBehindToolbox(dom);
       Blockly.Xml.domToWorkspace(dom, workspace);
-      this.sendAction("newWorkspace");
+      if (this.onNewWorkspace)
+        this.onNewWorkspace();
     }
 
   }),
@@ -287,7 +288,8 @@ export default Component.extend({
     run(() => {
       let xml = Blockly.Xml.workspaceToDom(this.get('workspaceElement'));
       let xml_text = Blockly.Xml.domToText(xml);
-      this.sendAction("onChangeWorkspace", xml_text);
+      if (this.onChangeWorkspace)
+        this.onChangeWorkspace(xml_text);
 
       //if (this.get('showCode')) {
         try {

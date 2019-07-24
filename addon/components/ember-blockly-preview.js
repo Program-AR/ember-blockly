@@ -55,8 +55,9 @@ export default Component.extend({
       this.set('javascriptCode', js_beautify(code));
     }
 
-    this.sendAction("onChangeWorkspace", xml_text);
-  },
+    if (this.onChangeWorkspace)
+      this.onChangeWorkspace(xml_text);
+},
 
   redraw_block() {
     let workspace = this.get('workspace');
