@@ -130,10 +130,10 @@ export default Service.extend({
 
     let new_block = Blockly.Blocks[new_name];
     new_block.isCustomBlock = true;
-    new_block.aliases = [original_block_name]
+    new_block.aliases = [original_block_name];
 
     if (!original_block.aliases)
-      original_block.aliases = []
+      original_block.aliases = [];
     original_block.aliases.push(new_name);
 
     if (!Blockly.MyLanguage) {
