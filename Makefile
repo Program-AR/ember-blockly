@@ -36,5 +36,6 @@ init:
 version:
 	npm version patch
 	npm publish
+	git push --follow-tags
 
 .PHONY: tmp
