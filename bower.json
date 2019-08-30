@@ -1,5 +1,6 @@
 {
   "name": "ember-blockly",
+  "license": "LGPL-3.0",
   "dependencies": {
     "blockly-package": "0.0.16"
   }
