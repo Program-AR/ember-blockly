@@ -2,64 +2,61 @@ import { currentURL, visit } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 
-module('Acceptance | navegate dummy app', function(hooks) {
-  setupApplicationTest(hooks);
-
-
-  test('visiting /', function(assert) {
+module('Acceptance | navegate dummy app', function (hooks) {
+      setupApplicationTest(hooks);
 
       function visitAndCheck(route, assert) {
-          return visit(route).then(function() {
-               return assert.equal(currentURL(), route, `this route is ${route} as spected`);
-          });
+            return visit(route).then(function () {
+                  return assert.equal(currentURL(), route, `this route is ${route} as spected`);
+            });
       }
 
-      let p = visitAndCheck('/', assert);
+      test('visiting /', function (assert) {
+            return visitAndCheck('/', assert);
+      });
 
-    p = p.then(function () {
-          return visitAndCheck('/flexbox', assert);
-    });
+      test('visiting /flexbox', function (assert) {
+            return visitAndCheck('/flexbox', assert);
+      });
 
-    p = p.then(function () {
-          return visitAndCheck('/parameters', assert);
-    });
+      test('visiting /parameters', function (assert) {
+            return visitAndCheck('/parameters', assert);
+      });
 
-    p = p.then(function () {
-          return visitAndCheck('/categories', assert);
-    });
+      test('visiting /categories', function (assert) {
+            return visitAndCheck('/categories', assert);
+      });
 
-    p = p.then(function () {
-          return visitAndCheck('/contextMenu', assert);
-    });
+      test('visiting /contextMenu', function (assert) {
+            return visitAndCheck('/contextMenu', assert);
+      });
 
-    p = p.then(function () {
-          return visitAndCheck('/highlight', assert);
-    });
+      test('visiting /highlight', function (assert) {
+            return visitAndCheck('/highlight', assert);
+      });
 
-    p = p.then(function () {
-          return visitAndCheck('/preview', assert);
-    });
+      test('visiting /preview', function (assert) {
+            return visitAndCheck('/preview', assert);
+      });
 
-    p = p.then(function () {
-          return visitAndCheck('/custom', assert);
-    });
+      test('visiting /custom', function (assert) {
+            return visitAndCheck('/custom', assert);
+      });
 
-    p = p.then(function () {
-          return visitAndCheck('/complexCustom', assert);
-    });
+      test('visiting /complexCustom', function (assert) {
+            return visitAndCheck('/complexCustom', assert);
+      });
 
-    p = p.then(function () {
-          return visitAndCheck('/helperCustom', assert);
-    });
+      test('visiting /helperCustom', function (assert) {
+            return visitAndCheck('/helperCustom', assert);
+      });
 
-    p = p.then(function () {
-          return visitAndCheck('/blocksCatalog', assert);
-    });
+      test('visiting /blocksCatalog', function (assert) {
+            return visitAndCheck('/blocksCatalog', assert);
+      });
 
-    p = p.then(function () {
-          return visitAndCheck('/dropdown', assert);
-    });
+      test('visiting /dropdown', function (assert) {
+            return visitAndCheck('/dropdown', assert);
+      });
 
-
-  });
 });

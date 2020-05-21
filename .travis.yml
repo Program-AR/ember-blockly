@@ -1,17 +1,6 @@
----
-language: node_js
-node_js:
-  - 'node'
-
-sudo: false
-dist: trusty
-
-addons:
-  chrome: stable
-
-os:
-  - linux
-
+env:
+  matrix:
+  - MATRIX_EVAL="CC=gcc-4.9 && CXX=g++-4.9"
 addons:
   firefox: latest
   apt:
@@ -20,6 +9,10 @@ addons:
     packages:
     - g++-4.9
     - gcc-4.9
+language: node_js
+os:
+- linux
+- osx
 
 cache:
   directories:
@@ -51,9 +44,7 @@ before_install:
   - npm install -g surge
 
 install:
-  - npm install -g bower
   - npm install
-  - bower install
 
 after_success:
   - ember build --environment=development
