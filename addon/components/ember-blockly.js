@@ -51,7 +51,7 @@ export default Component.extend({
   /* Highlighted block */
   highlightedBlock: null,
 
-  style: computed('showCode', function() {
+  style: computed('showCode', function () {
     if (this.get('showCode')) {
       return htmlSafe("");
     } else {
@@ -59,7 +59,7 @@ export default Component.extend({
     }
   }),
 
-  observeContextMenu: observer('contextMenu', function() {
+  observeContextMenu: observer('contextMenu', function () {
 
     if (this.get('contextMenu')) {
       this.enableContextMenu();
@@ -68,12 +68,12 @@ export default Component.extend({
     }
   }),
 
-  observeBlocks: observer('blocks', function() {
+  observeBlocks: observer('blocks', function () {
     this.set('current_blocks', this.get('blocks'));
     this.updateToolbox(this.get('current_blocks'));
   }),
 
-  observeWorkspace: observer('workspace', function() {
+  observeWorkspace: observer('workspace', function () {
 
     let workspace = this.get('workspaceElement');
     let xml_text = this.get('workspace');
@@ -90,14 +90,14 @@ export default Component.extend({
 
   }),
 
-  observeHighlightedBlock: observer('highlightedBlock', function() {
+  observeHighlightedBlock: observer('highlightedBlock', function () {
     this.get('workspaceElement').highlightBlock(this.get("highlightedBlock"));
   }),
 
-  _moveBlocksFromBehindToolbox(dom){
+  _moveBlocksFromBehindToolbox(dom) {
     // TODO: This method should go away once Blockly is updated.
-    if( this.get("current_blocks").some(block => block.category && block.category !== 'Separator') ) return dom;
-    
+    if (this.get("current_blocks").some(block => block.category && block.category !== 'Separator')) return dom;
+
     // Issue: https://github.com/google/blockly/issues/1924
     // If we don't have categories (which means we have just blocks in the toolbox)
     // then the workspace can be behind the toolbox, then
@@ -107,7 +107,7 @@ export default Component.extend({
     var toolboxBorder = this.get('workspaceElement').getFlyout_().width_;
     var x = domChild => parseInt(domChild.getAttribute('x'), 10);
 
-    Array.from(dom.childNodes).forEach( domChild => {
+    Array.from(dom.childNodes).forEach(domChild => {
       var name = domChild.nodeName.toLowerCase();
       if ((name == 'block' || name == 'shadow') && domChild.hasAttribute('x') && (x(domChild) < toolboxBorder)) {
         domChild.setAttribute('x', toolboxBorder + 15);
@@ -118,41 +118,41 @@ export default Component.extend({
   didInsertElement() {
 
     if (this.get('disablePreloadAudio')) {
-      Blockly.WorkspaceAudio.prototype.preload=function() {};
+      Blockly.WorkspaceAudio.prototype.preload = function () { };
     }
 
     this.createSection("section_control", "Control");
     this.createSection("section_logic", "Lógica");
 
     let options = {
-       toolbox: this.createToolbox(this.get("current_blocks")),
-       trashcan: this.get("withTrash"),
+      toolbox: this.createToolbox(this.get("current_blocks")),
+      trashcan: this.get("withTrash"),
 
-       collapse: this.get("collapse"),
-       comments: this.get("comments"),
-       css: this.get("css"),
-       disable: this.get("disable"),
-       horizontalLayout: this.get("horizontalLayout"),
-       maxBlocks: this.get("maxBlocks"),
-       rtl: this.get("rtl"),
-       media: this.get("mediaFolder"),
-       oneBasedIndex: this.get("oneBasedIndex"),
-       readOnly: this.get("readOnly"),
-       scrollbars: this.get("scrollbars"),
-       sounds: this.get("sounds"),
-       toolboxPosition: this.get("toolboxPosition"),
-     };
+      collapse: this.get("collapse"),
+      comments: this.get("comments"),
+      css: this.get("css"),
+      disable: this.get("disable"),
+      horizontalLayout: this.get("horizontalLayout"),
+      maxBlocks: this.get("maxBlocks"),
+      rtl: this.get("rtl"),
+      media: this.get("mediaFolder"),
+      oneBasedIndex: this.get("oneBasedIndex"),
+      readOnly: this.get("readOnly"),
+      scrollbars: this.get("scrollbars"),
+      sounds: this.get("sounds"),
+      toolboxPosition: this.get("toolboxPosition"),
+    };
 
-     if (this.get('grid')) {
-       options.grid = this._get_default_grid();
-     }
+    if (this.get('grid')) {
+      options.grid = this._get_default_grid();
+    }
 
-     if (this.get("withZoom")) {
-       options.zoom = this._get_default_zoom();
-     }
+    if (this.get("withZoom")) {
+      options.zoom = this._get_default_zoom();
+    }
 
-    let blocklyDiv = this.$().find("div")[0];
-    let blocklyArea = this.$()[0];
+    let blocklyDiv = this.element.querySelector('div');
+    let blocklyArea = this.element;
 
     let workspace = Blockly.inject(blocklyDiv, options);
 
@@ -228,7 +228,7 @@ export default Component.extend({
 
   disableContextMenu() {
     this.set('lastContextMenuFunction', Blockly.ContextMenu.show);
-    Blockly.ContextMenu.show = function() {};
+    Blockly.ContextMenu.show = function () { };
   },
 
   enableContextMenu() {
@@ -292,19 +292,19 @@ export default Component.extend({
         this.onChangeWorkspace(xml_text);
 
       //if (this.get('showCode')) {
-        try {
-          let code = Blockly.JavaScript.workspaceToCode(this.get('workspaceElement'));
-          this.set('javascriptCode', js_beautify(code));
-        } catch (e) {
-          console.warn("No se puede generar el código. Esto seguramente se produce porque la solución tiene un bloque inexistente.", e);
-        }
+      try {
+        let code = Blockly.JavaScript.workspaceToCode(this.get('workspaceElement'));
+        this.set('javascriptCode', js_beautify(code));
+      } catch (e) {
+        console.warn("No se puede generar el código. Esto seguramente se produce porque la solución tiene un bloque inexistente.", e);
+      }
       //}
     });
   },
 
   createSection(name, label) {
     Blockly.Blocks[name] = {
-      init: function() {
+      init: function () {
         this.appendDummyInput().appendField(`  ${label}  `);
         this.setOutput(false);
         this.setNextStatement(false);
@@ -337,8 +337,7 @@ export default Component.extend({
               throw new Error(`This block named '${bloque_en_categoria}' don't exist.`);
             }
 
-            if(Blockly.Blocks[bloque_en_categoria].toolbox)
-            {
+            if (Blockly.Blocks[bloque_en_categoria].toolbox) {
               toolbox.push(Blockly.Blocks[bloque_en_categoria].toolbox);
             }
             else {
