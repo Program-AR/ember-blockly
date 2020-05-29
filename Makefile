@@ -31,7 +31,6 @@ init:
 	$(call task, "Iniciando el proyecto.")
 	$(call log, "Instalando dependencias.")
 	@npm install
-	@bower install
 
 version:
 	npm version patch

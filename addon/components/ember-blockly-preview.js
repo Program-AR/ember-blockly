@@ -7,14 +7,14 @@ import layout from '../templates/components/ember-blockly-preview';
 export default Component.extend({
   layout,
   block: null,
-    classNames: ['ember-blockly-container'],
+  classNames: ['ember-blockly-container'],
   workspace: '<xml xmlns="http://www.w3.org/1999/xhtml"></xml>',
   mediaFolder: "blockly-package/media/",
   readOnly: true,
   showCode: false,
   javascriptCode: '',
 
-  blockObserver: observer('block', function() {
+  blockObserver: observer('block', function () {
     this.clear_workspace();
     this.redraw_block();
   }),
@@ -22,22 +22,21 @@ export default Component.extend({
   didInsertElement() {
 
     let options = {
-       toolbox: "",
-       trashcan: false,
-       media: this.get("mediaFolder"),
-       readOnly: this.get('readOnly'),
-       scrollbars: false,
-     };
+      toolbox: "",
+      trashcan: false,
+      media: this.get("mediaFolder"),
+      readOnly: this.get('readOnly'),
+      scrollbars: false,
+    };
 
-    let blocklyDiv = this.$().find("div")[0];
-    let blocklyArea = this.$()[0];
+    let blocklyDiv = this.element.querySelector('div');
 
     let workspace = Blockly.inject(blocklyDiv, options);
 
     this.set('workspace', workspace);
     this.redraw_block();
 
-    Blockly.ContextMenu.show = (a, b, c) => {};
+    Blockly.ContextMenu.show = (a, b, c) => { };
 
     workspace.addChangeListener(() => {
       run(() => {
@@ -57,7 +56,7 @@ export default Component.extend({
 
     if (this.onChangeWorkspace)
       this.onChangeWorkspace(xml_text);
-},
+  },
 
   redraw_block() {
     let workspace = this.get('workspace');
